@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Landing = props => {
+const LandingPage = props => {
   return (
     <section className="landing">
       <h2>Landing</h2>
@@ -8,4 +8,4 @@ const Landing = props => {
   );
 };
 
-export default Landing;
+export default LandingPage;
