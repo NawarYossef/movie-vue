@@ -8,6 +8,7 @@ module.exports = {
     "no-undef": 0,
     "no-trailing-spaces": 0,
     "arrow-parens": 0,
+    "arrow-body-style": 0,
     "class-methods-use-this": 0,
     "import/no-extraneous-dependencies": 0,
     "no-underscore-dangle": 0,
