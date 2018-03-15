@@ -1,9 +1,14 @@
 import React from 'react';
+import Nav from '../components/Nav';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const LandingPage = props => {
   return (
     <section className="landing">
-      <h2>Landing</h2>
+      <Nav />
+      <Header />
+      <Footer />
     </section>
   );
 };
