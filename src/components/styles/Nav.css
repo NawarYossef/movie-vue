@@ -1,0 +1,11 @@
+nav {
+  background: lightblue;
+  padding: 1%;
+  text-align: right;
+  width: 100%;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 1%;
+}

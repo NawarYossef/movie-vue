@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import AppNav from '../components/AppNav';
+import Footer from '../components/Footer';
+
 import './styles/inbox.css';
 
-const InboxPage = props => {
-  return (
-    <section className="inbox">
-      <h2>Inbox</h2>
-    </section>
-  );
-};
-
+class InboxPage extends Component {
+  
+  render() {
+    return (
+      <div className="inbox-page">
+        <AppNav />
+        <h1>Your Inbox</h1>
+      </div>
+    );
+  }
+}
 export default InboxPage;
-
