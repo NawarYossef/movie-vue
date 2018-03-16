@@ -7,7 +7,7 @@ export default function AppNav(props) {
     <Link to="/dashboard">DASHBOARD</Link>,
     <Link to="/inbox">INBOX</Link>,
     <Link to="/profile">PROFILE</Link>,
-    <Link to="/logout">LOGOUT</Link>
+    <Link to="/">LOGOUT</Link>
   ];
   return (
     <nav>
@@ -15,7 +15,7 @@ export default function AppNav(props) {
         {links.map((link, idx) => {
           return (
             <li key={idx.toString()} className="link">
-              {link}
+              {link}  
             </li>
           );
         })}

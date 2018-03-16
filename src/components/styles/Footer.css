@@ -11,3 +11,15 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+footer ul {
+  width: 60%;
+  margin: 0 auto;
+  /* padding: 10px 20px;   */
+}
+
+footer li {
+  display: inline;
+  padding-left: 30px;
+  color: #C7670E; 
+}
