@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const SettingsPage = props => {
   return (
@@ -8,4 +9,4 @@ const SettingsPage = props => {
   );
 };
 
-export default SettingsPage;
+export default connect()(SettingsPage);

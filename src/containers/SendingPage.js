@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import ComplimentList from '../components/ComplimentList';
@@ -6,30 +8,26 @@ import UserList from '../components/UserList';
 import './SendingPage.css';
 
 const SendingPage = props => {
-  const compliments = [
-    'you are so beautiful to me',
-    'your eyes are deep pools in which I wish to swim',
-    'you are wittier than like, everyone',
-    'I wish I were twice as good at math as you are'
-  ];
-
-  const users = [
-    'Roy',
-    'Nawar',
-    'Mr. T',
-    'Yoda'
-  ];
-  
   return (
     <section className="sending">
       <Nav />
       <div className="sending-grid">
-        <ComplimentList compliments={compliments} />
-        <UserList users={users} />
+        <ComplimentList compliments={props.compliments} />
+        <UserList users={props.users} />
       </div>
       <Footer />
     </section>
   );
 };
 
-export default SendingPage;
+SendingPage.propTypes = {
+  compliments: PropTypes.arrayOf(PropTypes.string).isRequired,
+  users: PropTypes.arrayOf(PropTypes.string).isRequired
+};
+
+const mapStateToProps = state => ({
+  compliments: state.complimentsReducer.compliments,
+  users: state.usersReducer.users
+});
+
+export default connect(mapStateToProps)(SendingPage);
