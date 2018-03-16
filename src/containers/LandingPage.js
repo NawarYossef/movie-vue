@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Nav from '../components/Nav';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -13,4 +14,4 @@ const LandingPage = props => {
   );
 };
 
-export default LandingPage;
+export default connect()(LandingPage);

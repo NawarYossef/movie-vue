@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './reducers';
 import thunk from 'redux-thunk';
+import rootReducer from './reducers';
 
 // creates store with redux dev tools chrome extension enabled https://github.com/gaearon/redux-devtools
 // and redux-thunk middleware applied

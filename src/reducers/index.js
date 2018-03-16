@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import reducer from './reducer';
+import complimentsReducer from './complimentsReducer';
+import usersReducer from './usersReducer';
 
 // add additional reducers here
 const rootReducer = combineReducers({
-  reducer
+  complimentsReducer,
+  usersReducer
 });
 
 export default rootReducer;

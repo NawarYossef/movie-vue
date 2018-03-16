@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import AppNav from "../components/AppNav";
 import Footer from "../components/Footer";
 import Calendar from "react-calendar";
 
 import "./styles/inbox.css";
 
-export class InboxPage extends Component {
+class InboxPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,12 +27,6 @@ export class InboxPage extends Component {
   };
 
   render() {
-    const compliments = [
-      "You are very smart",
-      "You are the most generous person I've met",
-      "You make my day"
-    ];
-
     return (
       <div className="inbox-page">
         <AppNav />
@@ -49,7 +45,7 @@ export class InboxPage extends Component {
               Your message for <span>{this.dateForCompliments()}</span>
             </h2>
             <ul>
-              {compliments.map((quote, i) => {
+              {this.props.compliments.map((quote, i) => {
                 return <li>"{quote}"</li>
               }) }
             </ul>
@@ -59,3 +55,13 @@ export class InboxPage extends Component {
     );
   }
 }
+
+InboxPage.propTypes = {
+  compliments: PropTypes.arrayOf(PropTypes.string).isRequired
+};
+
+const mapStateToProps = state => ({
+  compliments: state.complimentsReducer.compliments
+});
+
+export default connect(mapStateToProps)(InboxPage);
