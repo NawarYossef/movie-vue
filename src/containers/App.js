@@ -5,7 +5,7 @@ import LandingPage from './LandingPage';
 import InboxPage from './InboxPage';
 import Profile from './Profile';
 import Dashboard from './Dashboard';
-import './App.css';
+import './styles/App.css';
 
 class App extends Component {
   render() {

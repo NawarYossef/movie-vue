@@ -5,7 +5,7 @@ import AppNav from "../components/AppNav";
 import Footer from "../components/Footer";
 import Calendar from "react-calendar";
 
-import "./styles/inbox.css";
+import "./styles/InboxPage.css";
 
 class InboxPage extends Component {
   constructor(props) {
