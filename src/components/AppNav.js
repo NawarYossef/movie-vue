@@ -1,17 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles/AppNav.css';
 
-const AppNav = props => {
+export default function AppNav(props) {
+  const links = [
+    <Link to="/dashboard">DASHBOARD</Link>,
+    <Link to="/inbox">INBOX</Link>,
+    <Link to="/profile">PROFILE</Link>,
+    <Link to="/logout">LOGOUT</Link>
+  ];
   return (
     <nav>
       <ul>
-        <li>DASHBOARD</li>
-        <li>INBOX</li>
-        <li>PROFILE</li>
-        <li>LOGOUT</li>
+        {links.map((link, idx) => {
+          return (
+            <li key={idx.toString()} className="link">
+              {link}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
-};
-
-export default AppNav;
+}

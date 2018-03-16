@@ -17,6 +17,10 @@ module.exports = {
     "react/jsx-max-props-per-line": 0,
     "react/jsx-filename-extension": 0,
     "react/sort-comp": 0,
-    "react/jsx-wrap-multilines": 0
+    "react/jsx-wrap-multilines": 0,
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "to" ]
+    }]
   }
 };
