@@ -1,11 +1,13 @@
-import React, { Component } from "react";
+
+import Calendar from 'react-calendar';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AppNav from "../components/AppNav";
-import Footer from "../components/Footer";
-import Calendar from "react-calendar";
+import AppNav from '../components/AppNav';
+import Footer from '../components/Footer';
 
-import "./styles/InboxPage.css";
+
+import './styles/InboxPage.css';
 
 class InboxPage extends Component {
   constructor(props) {
@@ -13,18 +15,20 @@ class InboxPage extends Component {
     this.state = {
       date: new Date()
     };
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.dateForCompliments = this.dateForCompliments.bind(this);
   }
 
-  handleDateChange = date => {
+  handleDateChange(date) {
     this.setState({ date });
-  };
+  }
 
-  dateForCompliments = () => {
+  dateForCompliments() {
     const date = new Date(this.state.date);
     return (
-      date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+      `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
     );
-  };
+  }
 
   render() {
     return (
