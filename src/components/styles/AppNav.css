@@ -16,5 +16,8 @@ nav ul {
 nav li {
   display: inline;
   padding-left: 30px;
+}
+
+nav a {
   color: #C7670E; 
 }

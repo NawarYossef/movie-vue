@@ -1,8 +1,8 @@
-
-import Calendar from 'react-calendar';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import CalendarSection from '../components/CalendarSection';
+import InboxCompliments from '../components/InboxCompliments';
 import AppNav from '../components/AppNav';
 import Footer from '../components/Footer';
 
@@ -36,24 +36,8 @@ class InboxPage extends Component {
         <AppNav />
         <h1>Your Inbox</h1>
         <div>
-
-          <section className="calendar-wrapper">
-            <Calendar
-              onChange={this.handleDateChange}
-              value={this.state.date}
-            />
-          </section>
-
-          <section className="compliments">
-            <h2>
-              Your message for <span>{this.dateForCompliments()}</span>
-            </h2>
-            <ul>
-              {this.props.compliments.map((quote, i) => {
-                return <li>"{quote}"</li>
-              }) }
-            </ul>
-          </section>
+          <CalendarSection onChange={() => this.handleDateChange()} />
+          <InboxCompliments compliments={this.props.compliments} dateForCompliments={this.dateForCompliments()} /> 
         </div>
       </div>
     );

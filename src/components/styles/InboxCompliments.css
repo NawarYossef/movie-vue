@@ -1,0 +1,15 @@
+/* calender */
+.calendar-wrapper {
+  width: 50%;
+  float: left;
+}
+
+.react-calendar {
+  display: inline-block;
+  width: 50%;
+  margin: 100px 0 0 100px;
+}
+
+.react-calendar__tile {
+  /* color: black; */
+}
