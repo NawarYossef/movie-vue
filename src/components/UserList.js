@@ -4,7 +4,7 @@ import './styles/UserList.css';
 
 const UserList = props => {
   const usersToDisplay = props.users.map((item, index) => {
-    return <li>{item}</li>;
+    return <li key={index}>{item}</li>;
   });
 
   return (

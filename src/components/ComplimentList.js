@@ -4,7 +4,7 @@ import './styles/ComplimentList.css';
 
 const ComplimentList = props => {
   const complimentDisplay = props.compliments.map((item, index) => {
-    return <li>{item}</li>;
+    return <li key={index}>{item}</li>;
   });
   
   return (
