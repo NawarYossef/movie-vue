@@ -15,4 +15,4 @@ const LandingPage = props => {
   );
 };
 
-export default connect()(LandingPage);
+export default connect()(LandingPage)
