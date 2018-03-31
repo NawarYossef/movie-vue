@@ -1,16 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Nav from '../components/Nav';
-import Header from '../components/Header';
-import LandingIntro from '../components/LandingIntro';
+import AppNav from '../components/AppNav';
+import HomeHeader from '../components/HomePageHeader';
+import LandingPageHeader from '../components/LandingPageHeader';
 import Footer from '../components/Footer';
 
 const LandingPage = props => {
   return (
     <section className="landing">
-      <Nav />
-      <Header />
-      <LandingIntro />
+      <AppNav />
+      <LandingPageHeader />
       <Footer />
     </section>
   );

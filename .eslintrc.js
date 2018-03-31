@@ -24,6 +24,7 @@ module.exports = {
       "components": [ "Link" ],
       "specialLink": [ "to" ]
     }],
+    "jsx-quotes": ["error", "prefer-double"],
     "jsx-a11y/href-no-hash": 0
   }
 };
