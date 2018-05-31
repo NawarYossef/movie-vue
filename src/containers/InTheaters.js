@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
+import 'normalize.css';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
+
 
 const MoviesSection = styled.div`
 width: 100%;
@@ -40,12 +43,12 @@ font-size: 3em;
 text-align: center;
 `;
 
-class Popular extends Component {
+class InTheaters extends Component {
   render() {
     return (
       <div>
         <TitleWrapper>
-          <SectionTitle>Popular</SectionTitle>
+          <SectionTitle>Now Playing</SectionTitle>
         </TitleWrapper>
         <MoviesWrapper>
           <Movie>1</Movie>
@@ -61,12 +64,8 @@ class Popular extends Component {
   }
 }
 
-Popular.propTypes = {
-
-};
-
 // const mapStateToProps = state => ({
 
 // });
 
-export default connect()(Popular);
+export default connect()(InTheaters);

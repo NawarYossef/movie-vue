@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
-import complimentsReducer from './complimentsReducer';
-import usersReducer from './usersReducer';
+import movies from './movies';
 
 // add additional reducers here
 const rootReducer = combineReducers({
-  complimentsReducer,
-  usersReducer
+  movies
 });
 
 export default rootReducer;

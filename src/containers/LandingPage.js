@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AppNav from '../components/AppNav';
-import HomeHeader from '../components/HomePageHeader';
-import LandingPageHeader from '../components/LandingPageHeader';
 import Footer from '../components/Footer';
 
-const LandingPage = props => {
+
+function LandingPage() {
   return (
     <section className="landing">
-      <AppNav />
-      <LandingPageHeader />
+      <div className="header-wrapper">
+        <h2>Landing Page</h2>
+      </div>
       <Footer />
     </section>
   );
-};
+}
 
-export default connect()(LandingPage)
+export default connect()(LandingPage);

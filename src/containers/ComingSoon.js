@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
+import 'normalize.css';
 import styled from 'styled-components';
+import { getNewMovies } from '../actions/action';
 import Footer from '../components/Footer';
 
 const MoviesSection = styled.div`
@@ -40,12 +43,15 @@ font-size: 3em;
 text-align: center;
 `;
 
-class Popular extends Component {
+class ComingSoon extends Component {
+  componentDidMount() {
+    this.props.getNewMovies();
+  }
   render() {
     return (
       <div>
         <TitleWrapper>
-          <SectionTitle>Popular</SectionTitle>
+          <SectionTitle>Coming Soon</SectionTitle>
         </TitleWrapper>
         <MoviesWrapper>
           <Movie>1</Movie>
@@ -61,12 +67,12 @@ class Popular extends Component {
   }
 }
 
-Popular.propTypes = {
+const mapDispatchToProps = dispatch => ({
+  getNewMovies: () => dispatch(getNewMovies())
+});
 
-};
+const mapStateToProps = state => ({
+  newMovies: state.newMovies
+});
 
-// const mapStateToProps = state => ({
-
-// });
-
-export default connect()(Popular);
+export default connect(mapStateToProps, mapDispatchToProps)(ComingSoon);

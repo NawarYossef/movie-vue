@@ -1,7 +1,11 @@
 module.exports = {
-  extends: "airbnb",
+  extends: ["airbnb",
+  "react-app"],
   rules: {
     "no-console": "off",
+    'no-confusing-arrow': [2, {
+      'allowParens': true,
+    }],
     "no-unused-vars": 0,
     "max-len": 0,
     "comma-dangle": 0,
@@ -20,11 +24,11 @@ module.exports = {
     "react/sort-comp": 0,
     "react/jsx-wrap-multilines": 0,
     "react/no-array-index-key": 0,
+    "jsx-quotes": ["error", "prefer-double"],
     "jsx-a11y/anchor-is-valid": [ "error", {
       "components": [ "Link" ],
       "specialLink": [ "to" ]
     }],
-    "jsx-quotes": ["error", "prefer-double"],
-    "jsx-a11y/href-no-hash": 0
+    "jsx-a11y/href-no-hash": [0]
   }
 };
