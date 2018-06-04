@@ -21,7 +21,7 @@ const ListElement = styled.li`
 `;
 
 const NavLink = styled(Link)`
-  color: #C7670E;
+  color: #ffffff;
   display: block;
   margin-right: ${props => props.lastbtn ? '0px' : '60px'};
   &:hover {

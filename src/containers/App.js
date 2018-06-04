@@ -9,23 +9,24 @@ import Popular from './Popular';
 import InTheaters from './InTheaters';
 import ComingSoon from './ComingSoon';
 
-const Wrapper = styled.div`
+const PageWrapper = styled.div`
 text-align: center;
 margin: 0 auto;
 box-sizing: border-box;
+background-color: #F4F4F4;
 `;
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <Wrapper>
+        <PageWrapper>
           <Header />
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/Popular" component={Popular} />
           <Route exact path="/in-theaters" component={InTheaters} />
           <Route exact path="/coming-soon" component={ComingSoon} />
-        </Wrapper>
+        </PageWrapper>
       </Router>
     );
   }
