@@ -107,11 +107,6 @@ class ComingSoon extends Component {
   }
   componentDidMount() {
     this.props.getNewMovies();
-    
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ movies: nextProps.newMovies });
   }
 
   viewMoreMovies() {
@@ -123,49 +118,46 @@ class ComingSoon extends Component {
   }
 
   render() {
-    let allMovies;
-    if (this.state.movies) {
-      allMovies = this.state.movies.results.map((movie, index) => {
-        return (
-          <Movie key={index}>
-            <Wrapper>
-              <Title>{movie.title}</Title>
-              <ReleaseDate>{movie.release_date}</ReleaseDate>
-              <Description>
-                <Text>
-                  {this.showBriefDescription(movie.overview)}
-                  <Link to="/movie-details">
-                    <ReadMoreLink>Read more...</ReadMoreLink>
-                  </Link>
-                </Text>
-                <IconsWrapper >
-                  <Icon>
-                    <FontAwesome name="thumbs-up" size="2x" />
-                  </Icon>
-                  <Icon>
-                    <FontAwesome name="thumbs-down" size="2x" />
-                  </Icon>
-                  <Icon>
-                    <FontAwesome name="star" size="2x" />
-                  </Icon>
-                  <Icon>
-                    <FontAwesome name="play" size="2x" />
-                  </Icon>
-                </IconsWrapper>
-              </Description>
-            </Wrapper>
-            <Img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="img" />
-          </Movie>
-        );
-      });
-    }
+    const { newMovies } = this.props;
     return (
       <SectionWrapper>
         <MoviesWrapper>
           <TitleWrapper>
             <SectionTitle>Coming Soon</SectionTitle>
           </TitleWrapper>
-          {allMovies}
+          {Object.keys(newMovies).length > 0 && newMovies.results.map((movie) => {
+            return (
+              <Movie>
+                <Wrapper>
+                  <Title>{movie.title}</Title>
+                  <ReleaseDate>{movie.release_date}</ReleaseDate>
+                  <Description>
+                    <Text>
+                      {this.showBriefDescription(movie.overview)}
+                      <Link to="/movie-details">
+                        <ReadMoreLink>Read more...</ReadMoreLink>
+                      </Link>
+                    </Text>
+                    <IconsWrapper >
+                      <Icon>
+                        <FontAwesome name="thumbs-up" size="2x" />
+                      </Icon>
+                      <Icon>
+                        <FontAwesome name="thumbs-down" size="2x" />
+                      </Icon>
+                      <Icon>
+                        <FontAwesome name="star" size="2x" />
+                      </Icon>
+                      <Icon>
+                        <FontAwesome name="play" size="2x" />
+                      </Icon>
+                    </IconsWrapper>
+                  </Description>
+                </Wrapper>
+                <Img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="img" />
+              </Movie>
+            );
+          })}
         </MoviesWrapper>
       </SectionWrapper>
     );

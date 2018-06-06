@@ -1,7 +1,7 @@
 import * as actions from '../actions/action';
 
 const initialState = {
-  newMovies: [],
+  newMovies: {},
   popularMovies: [],
   inTheaters: [],
   singleMovie: {},

@@ -31,9 +31,8 @@ color: #ffffff;
 `;
 
 
-export default class Header extends Component {
+export default function Header() {
 
-  render() {
     return (
       <AppHeader>
         <HeaderWrapper>
@@ -44,5 +43,4 @@ export default class Header extends Component {
         </HeaderWrapper>
       </AppHeader>
     );
-  }
 }

@@ -65,72 +65,36 @@ text-align: left;
 
 let DropDownContent = styled.div`
 display: none;
+position: absolute;
 background-color: #f9f9f9;
 min-width: 160px;
 box-shadow: 0;
 `;
-export default class AppNav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dropDownMenuClicked: false
-    };
-  }
 
-  handleDropDownMenu() {
-    if (this.state.dropDownMenuClicked) {
-      DropDownContent = styled.div`
-      display: none;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0;
-      `;
-      this.setState({ dropDownMenuClicked: false });
-    } else {
-      DropDownContent = styled.div`
-        display: block;
-        position: absolute;
-        right: 30%;
-        top: 50%;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0;
-        `;
-      this.setState({ dropDownMenuClicked: true })
-    }
-  }
+export default function AppNav() {
 
-  toggleMenu() {
-    this.setState({ dropDownMenuClicked: false });
-  }
+  const links = [
+    <DropDownLink>Movies<Icon><FontAwesome className={"fa fa-caret-down"} size="1" /></Icon></DropDownLink>,
+    <DropDownContent>
+      <SubLink to="/movies/coming-soon">Coming Soon</SubLink>
+      <SubLink to="/movies/now-playing">Now Playing</SubLink>
+      <SubLink to="/movies/popular">Popular</SubLink>
+    </DropDownContent>,
+    <NavLink to="/dashboard">Dashboard</NavLink>,
+    <NavLink lastbtn="true" to="/community">Community</NavLink>
+  ];
 
-  render() {
-    const links = [
-      <DropDownLink
-        onClick={this.handleDropDownMenu.bind(this)}
-      >Movies<Icon><FontAwesome className={"fa fa-caret-down"} size="1" /></Icon></DropDownLink>,
-      <DropDownContent>
-        <SubLink to="/movies/coming-soon">Coming Soon</SubLink>
-        <SubLink to="/movies/now-playing">Now Playing</SubLink>
-        <SubLink to="/movies/popular">Popular</SubLink>
-      </DropDownContent>,
-      <NavLink onClick={this.toggleMenu.bind(this)} to="/dashboard">Dashboard</NavLink>,
-      <NavLink lastbtn="true" to="/community">Community</NavLink>
-    ];
-
-    return (
-      <NavBar>
-        <List>
-          {links.map((link, idx) => {
-            return (
-              <ListElement key={idx.toString()} className="link">
-                {link}
-              </ListElement>
-            );
-          })}
-        </List>
-      </NavBar>
-    );
-  }
-
+  return (
+    <NavBar>
+      <List>
+        {links.map((link, idx) => {
+          return (
+            <ListElement key={idx.toString()} className="link">
+              {link}
+            </ListElement>
+          );
+        })}
+      </List>
+    </NavBar>
+  );
 }
