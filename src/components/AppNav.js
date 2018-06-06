@@ -37,7 +37,8 @@ color: #ffffff;
 position: relative;
 display: block;
 margin-right: 60px;
-&:hover {
+&:hover ${DropDownContent} {
+  display: block;
   color: #d9d9d9;
   cursor: pointer;
 }
@@ -70,6 +71,7 @@ background-color: #f9f9f9;
 min-width: 160px;
 box-shadow: 0;
 `;
+
 
 export default function AppNav() {
 

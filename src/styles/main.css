@@ -1,3 +1,32 @@
+/* .dropDownButton {
+  color: #ffffff;
+  position: relative;
+  display: block;
+  margin-right: 60px;
+  border: none;
+  background-color:#d4141400;
+}
+
+.dropDownButton:hover {
+  color: #d9d9d9;
+  background-color:#d4141400;
+  cursor: pointer;
+}
+.dropDownButton:hover .dropDownContent {
+ 
+}
+
+body ul .dropDownContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0;
+} */
+
+
+/* footer styles */
+
 footer {
   background: lightblue;
   position: absolute;
@@ -21,5 +50,5 @@ footer ul {
 footer li {
   display: inline;
   padding-left: 30px;
-  color: #C7670E; 
+  color: #C7670E;
 }
