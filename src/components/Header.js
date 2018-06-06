@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PopcornImage from '../assets/cinema-icon.png'
 import 'normalize.css';
 import styled from 'styled-components';
 import AppNav from './AppNav';
@@ -22,12 +23,16 @@ align-items: center;
 
 const WrapperForAppTitle = styled.div`
 flex: auto;
+display: flex;
+align-items: center;  
 text-align: initial;
 `;
 
 const AppTitle = styled.h1`
 margin: 0px;
 color: #ffffff;
+font-size: 2.6em;
+display: inline-block;
 `;
 
 
@@ -38,6 +43,7 @@ export default function Header() {
         <HeaderWrapper>
           <WrapperForAppTitle>
             <AppTitle>MovieVue</AppTitle>
+          <img src={PopcornImage} className={'headerImage'} alt="cinematic-image"/>
           </WrapperForAppTitle>
           <AppNav/>
         </HeaderWrapper>
