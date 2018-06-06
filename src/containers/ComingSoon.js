@@ -44,6 +44,7 @@ class ComingSoon extends Component {
       pageNumber: 1
     };
   }
+
   componentDidMount = () => {
     this.props.getNewMovies();
   }

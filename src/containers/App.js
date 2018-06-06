@@ -21,6 +21,16 @@ const MainPage = styled.div`
 `
 
 class App extends Component {
+  componentDidMount = () => {
+    window.addEventListener('scroll', this.handleHeaderBoxShadow);
+  }
+
+  handleHeaderBoxShadow() {
+    window.scrollY > 62 ?
+      document.querySelector('header').style.boxShadow = "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)" :
+      document.querySelector('header').style.boxShadow = "none";
+  }
+
   render() {
     return (
       <Router>
