@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import 'normalize.css';
 import styled from 'styled-components';
@@ -6,8 +6,10 @@ import AppNav from './AppNav';
 
 const AppHeader = styled.header`
 width: 100%;
+position: fixed;
 background-color: #081C24;
 padding: 15px 0px;
+border-bottom: 1px solid #D2691E;
 `;
 
 const HeaderWrapper = styled.div`
@@ -29,15 +31,18 @@ color: #ffffff;
 `;
 
 
-export default function Header() {
-  return (
-    <AppHeader>
-      <HeaderWrapper>
-        <WrapperForAppTitle>
-          <AppTitle>MovieVue</AppTitle>
-        </WrapperForAppTitle>
-        <AppNav />
-      </HeaderWrapper>
-    </AppHeader>
-  );
+export default class Header extends Component {
+
+  render() {
+    return (
+      <AppHeader>
+        <HeaderWrapper>
+          <WrapperForAppTitle>
+            <AppTitle>MovieVue</AppTitle>
+          </WrapperForAppTitle>
+          <AppNav/>
+        </HeaderWrapper>
+      </AppHeader>
+    );
+  }
 }

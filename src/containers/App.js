@@ -12,9 +12,13 @@ import ComingSoon from './ComingSoon';
 const PageWrapper = styled.div`
 text-align: center;
 margin: 0 auto;
+position: relative;
 box-sizing: border-box;
-background-color: #F4F4F4;
 `;
+
+const MainPage = styled.div`
+
+`
 
 class App extends Component {
   render() {
@@ -23,9 +27,9 @@ class App extends Component {
         <PageWrapper>
           <Header />
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/Popular" component={Popular} />
-          <Route exact path="/in-theaters" component={InTheaters} />
-          <Route exact path="/coming-soon" component={ComingSoon} />
+          <Route exact path="/movies/popular" component={Popular} />
+          <Route exact path="/movies/now-playing" component={InTheaters} />
+          <Route exact path="/movies/coming-soon" component={ComingSoon} />
         </PageWrapper>
       </Router>
     );

@@ -6,6 +6,13 @@ module.exports = {
     'no-confusing-arrow': [2, {
       'allowParens': true,
     }],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "paths": ["src"]
+        }
+      }
+    },
     "no-unused-vars": 0,
     "max-len": 0,
     "comma-dangle": 0,

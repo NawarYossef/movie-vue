@@ -11,9 +11,10 @@ const initialState = {
 export default function movies(state = initialState, action) {
   switch (action.type) {
     case actions.GET_NEW_MOVIES_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         newMovies: action.movies
-      });
+      }
     default:
       return state;
   }

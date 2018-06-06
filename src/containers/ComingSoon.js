@@ -7,10 +7,6 @@ import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
 import { getNewMovies } from '../actions/action';
 
-const MoviesSection = styled.div`
-width: 100%;
-padding: 15px 0px;
-`;
 
 const TitleWrapper = styled.div`
 width:  100%;
@@ -18,14 +14,20 @@ text-align: left;
 `;
 
 const SectionTitle = styled.h2`
-color: #000000;
+color: #ffffff;
 font-size: 1.4em;
 `;
 
+const SectionWrapper = styled.section`
+background-color: #051929;
+width: 100%;
+margin: 0px;
+padding-top: 100px;
+`
 const MoviesWrapper = styled.ul`
 width: 80%;
 padding: 0px;
-margin: 50px auto 0 auto;
+margin: 0px auto 0 auto;
 list-style: none;
 display: flex;
 flex-wrap: wrap;  
@@ -36,12 +38,13 @@ justify-content: space-between;
 const Movie = styled.li`
 display: flex;
 flex-direction: row-reverse; 
-background: #ffffff;
+background: #222121;
 border: none;
 flex: 0 0 48%;
 height: 300px;
 margin-bottom: 30px;
 color: white;
+box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 `;
 
 const Wrapper = styled.div`
@@ -50,20 +53,20 @@ margin: 0 auto;
 `;
 const Title = styled.h3`
 font-size: 1.1em;
-color: #000000;
+color: #ffffff;
 margin: 10px 0 0 0;
 `;
 const ReleaseDate = styled.h6`
 font-size: 0.9em;
 margin-bottom: 10px;
-color: #666666;
+color: #D2691E;
 `;
 const Description = styled.div`
 font-size: 0.9em;
 text-align: left;
 line-height: 120%;
 padding: 15px;
-color: #4D4D4D;
+color: #e1e1e1;
 
 `;
 
@@ -104,6 +107,7 @@ class ComingSoon extends Component {
   }
   componentDidMount() {
     this.props.getNewMovies();
+    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -151,22 +155,22 @@ class ComingSoon extends Component {
               </Description>
             </Wrapper>
             <Img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="img" />
-          </Movie >
+          </Movie>
         );
       });
     }
     return (
-      <div>
+      <SectionWrapper>
         <MoviesWrapper>
           <TitleWrapper>
             <SectionTitle>Coming Soon</SectionTitle>
           </TitleWrapper>
           {allMovies}
         </MoviesWrapper>
-      </div >
+      </SectionWrapper>
     );
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   getNewMovies: () => dispatch(getNewMovies())
