@@ -53,7 +53,7 @@ const ReadMoreLink = styled.span`
 display: block;
 margin-top: 5px;
 font-size: 0.9em;
-color: blue;
+color: #0ac70a;
 &:hover {
   cursor: pointer;
 }
@@ -80,6 +80,7 @@ transition: background-color 1s;
 &:hover {
   background-color: gray;
   color: #000000;
+  cursor: pointer;
 }
 `;
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
+import '../styles/main.css';
 
 const NavBar = styled.nav`
   flex: auto;
@@ -32,11 +33,12 @@ const NavLink = styled(Link) `
     color: #d9d9d9;
   }
 `;
-const DropDownLink = styled.div`
+const DropDownLink = styled.li`
 color: #ffffff;
 position: relative;
 display: block;
 margin-right: 60px;
+margin-bottom: 0px;
 &:hover ${DropDownContent} {
   display: block;
   color: #d9d9d9;
@@ -76,12 +78,13 @@ box-shadow: 0;
 export default function AppNav() {
 
   const links = [
-    <DropDownLink>Movies<Icon><FontAwesome className={"fa fa-caret-down"} size="1" /></Icon></DropDownLink>,
-    <DropDownContent>
-      <SubLink to="/movies/coming-soon">Coming Soon</SubLink>
-      <SubLink to="/movies/now-playing">Now Playing</SubLink>
-      <SubLink to="/movies/popular">Popular</SubLink>
-    </DropDownContent>,
+    <DropDownLink>Movies<Icon><FontAwesome className={"fa fa-caret-down"} size="1" /></Icon>
+      <ul className={"dropDownList"}>
+      <li><Link to="/movies/coming-soon">Coming Soon</Link></li>
+      <li><Link to="/movies/now-playing">Now Playing</Link></li>
+      <li><Link to="/movies/popular">Popular</Link></li>
+      </ul>
+    </DropDownLink>,
     <NavLink to="/dashboard">Dashboard</NavLink>,
     <NavLink lastbtn="true" to="/community">Community</NavLink>
   ];

@@ -24,8 +24,51 @@ body ul .dropDownContent {
   box-shadow: 0;
 } */
 
-/* footer styles */
+/* drop down menu styles */
 
+nav ul li {
+  display: inline-block;
+}
+
+.linkDropDown {
+  position: relative;
+}
+
+.dropDownList {
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: -54%;
+  top: 92%;
+  width: 160%;
+  padding: 10px 0px;
+  margin: 0 auto;
+  background-color: rgb(12, 50, 65);
+}
+
+.dropDownList li {
+  display: block;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.dropDownList li:hover>a {
+  color: #d8d8d8;
+}
+
+.dropDownList li:last-child {
+  margin-bottom: 0px;
+}
+
+.dropDownList li a {
+  color: #ffffff;
+}
+
+li:hover > ul {
+  display: inherit;
+}
+
+/* footer styles */
 footer {
   background: lightblue;
   position: absolute;
