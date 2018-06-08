@@ -18,8 +18,6 @@ export const getNewMovies = (pageNumber) => {
         return res.json();
       })
       .then(data => {
-        console.log("here's our movies", data);
-        
         dispatch(getNewMoviesSuccess(data));
       })
       .catch(err => console.log(err));

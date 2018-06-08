@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
-import { Modal, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
 
 const MovieSection = styled.li`
 display: flex;

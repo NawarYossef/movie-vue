@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
@@ -45,8 +46,14 @@ class ComingSoon extends Component {
       movies: '',
       pageNumber: 1,
       movieId: '',
+      movieVideoKey: '',
       showModal: false
     };
+  }
+
+
+  componentDidMount = () => {
+    this.props.getNewMovies();
   }
 
   closeMovieTrailerModal = () => {
@@ -54,25 +61,30 @@ class ComingSoon extends Component {
   }
 
   showMovieTrailerModal = (movieId) => {
-    this.setState({ movieId, showModal: true });
-  }
+    const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`
+    axios.get(movieUrl)
+      .then(res => {
+        console.log('------------------------------------');
+        console.log(res.data.videos.results);
+        console.log('------------------------------------');
+        this.setState({
+          movieId,
+          movieVideoKey: res.data.videos.results[0].key,
+          showModal: true
+        });
+      })
 
-  componentDidMount = () => {
-    this.props.getNewMovies();
   }
-
   viewMoreMovies = () => {
-
   }
 
   showMovieTrailer = () => {
-    
     return (
       <Modal
         show={this.state.showModal}
         onHide={this.closeMovieTrailerModal}
         container={this}
-        aria-labelledby="contained-modal-title"
+        aria- labelledby="contained-modal-title"
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title">
@@ -80,9 +92,9 @@ class ComingSoon extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Elit est explicabo ipsum eaque dolorem blanditiis doloribus sed id
-          ipsam, beatae, rem fuga id earum? Inventore et facilis obcaecati.
-  </Modal.Body>
+          <iframe width="420" height="345" src={`https://www.youtube.com/embed/${this.state.movieVideoKey}`}>
+          </iframe>
+        </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.closeMovieTrailerModal}>Close</Button>
         </Modal.Footer>
