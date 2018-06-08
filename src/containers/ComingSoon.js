@@ -6,6 +6,8 @@ import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
 import { getNewMovies } from '../actions/action';
 import Movie from '../components/Movie';
+import { Modal, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
 
 
@@ -41,8 +43,18 @@ class ComingSoon extends Component {
     super(props);
     this.state = {
       movies: '',
-      pageNumber: 1
+      pageNumber: 1,
+      movieId: '',
+      showModal: false
     };
+  }
+
+  closeMovieTrailerModal = () => {
+    this.setState({ showModal: false });
+  }
+
+  showMovieTrailerModal = (movieId) => {
+    this.setState({ movieId, showModal: true });
   }
 
   componentDidMount = () => {
@@ -53,6 +65,31 @@ class ComingSoon extends Component {
 
   }
 
+  showMovieTrailer = () => {
+    
+    return (
+      <Modal
+        show={this.state.showModal}
+        onHide={this.closeMovieTrailerModal}
+        container={this}
+        aria-labelledby="contained-modal-title"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title">
+            {this.state.movieId}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Elit est explicabo ipsum eaque dolorem blanditiis doloribus sed id
+          ipsam, beatae, rem fuga id earum? Inventore et facilis obcaecati.
+  </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.closeMovieTrailerModal}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    )
+  }
+
   showBriefDescription = (description) => {
     return `${description.split('.')[0]}.`;
   }
@@ -60,6 +97,7 @@ class ComingSoon extends Component {
   render() {
     const { newMovies } = this.props;
     return (
+
       <SectionWrapper>
         <MoviesWrapper>
           <TitleWrapper>
@@ -67,10 +105,14 @@ class ComingSoon extends Component {
           </TitleWrapper>
           {Object.keys(newMovies).length > 0 && newMovies.results.map((movie) => {
             return (
-              <Movie movie={movie} showBriefDescription={this.showBriefDescription(movie.overview)} />
+              <Movie movie={movie}
+                showBriefDescription={this.showBriefDescription(movie.overview)}
+                showMovieTrailerModal={this.showMovieTrailerModal}
+              />
             );
           })}
         </MoviesWrapper>
+        {this.showMovieTrailer()}
       </SectionWrapper>
     );
   };
