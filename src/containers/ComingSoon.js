@@ -5,8 +5,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
-import { getNewMovies } from '../actions/action';
+import { getMovies } from '../actions/action';
 import Movie from '../components/Movie';
+import { movieApiData } from "../constants.js"
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
@@ -53,7 +54,7 @@ class ComingSoon extends Component {
 
 
   componentDidMount = () => {
-    this.props.getNewMovies();
+    this.props.getMovies();
   }
 
   closeMovieTrailerModal = () => {
@@ -65,7 +66,7 @@ class ComingSoon extends Component {
     axios.get(movieUrl)
       .then(res => {
         console.log('------------------------------------');
-        console.log(res.data.videos.results);
+        console.log(res.data.videos.results, this.props.location.pathname);
         console.log('------------------------------------');
         this.setState({
           movieId,
@@ -131,7 +132,7 @@ class ComingSoon extends Component {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getNewMovies: () => dispatch(getNewMovies())
+  getMovies: () => dispatch(getMovies())
 });
 
 const mapStateToProps = state => ({

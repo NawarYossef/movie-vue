@@ -5,7 +5,7 @@ export const getNewMoviesSuccess = movies => ({
   movies
 });
 
-export const getNewMovies = (pageNumber) => {
+export const getMovies = (pageNumber) => {
   return dispatch => {
     fetch(`https://api.themoviedb.org/4/discover/movie?primary_release_date.gte=2018-4-7&page=1&api_key=${process.env.REACT_APP_API_KEY}&language=en-US`, {
       method: 'GET',
