@@ -6,10 +6,12 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
 import { getMovies } from '../actions/action';
-import Movie from '../components/Movie';
+import { SingleMovie } from '../components/SingleMovie';
 import MovieModal from '../components/MovieModal';
-import { MOVIE_API_DATA } from "../constants.js"
+import { DetailsForMovie } from '../components/DetailsForMovie';
+import { MOVIES_DATA } from "../constants.js"
 import { Modal, Button } from 'react-bootstrap';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
 
@@ -49,30 +51,48 @@ class ComingSoon extends Component {
       pageNumber: 1,
       movieId: '',
       movieVideoKey: '',
-      showModal: false
+      showModal: false,
+      showMovieDetails: false,
+      movieData: '',
+      movieCreditsData: {}
     };
   }
 
-
-  // componentDidMount = () => {
-  //   console.log('------------------------------------');
-  //   console.log("this is the url", MOVIE_API_DATA.popular.url);
-  //   console.log('------------------------------------');
-  //   this.props.getMovies(MOVIE_API_DATA.popular.url, this.state.pageNumber);
-  // }
-
   componentDidMount = () => {
-    if (this.props.location.pathname === MOVIE_API_DATA.popular.route) {
-      this.props.getMovies(MOVIE_API_DATA.popular.url, this.state.pageNumber);
-    } else if (this.props.location.pathname === MOVIE_API_DATA.nowPlaying.route) {
-      this.props.getMovies(MOVIE_API_DATA.nowPlaying.url, this.state.pageNumber);
-    } else if (this.props.location.pathname === MOVIE_API_DATA.comingSoon.route) {
-      this.props.getMovies(MOVIE_API_DATA.comingSoon.url, this.state.pageNumber);
+    if (this.props.location.pathname === MOVIES_DATA.popular.route) {
+      this.props.getMovies(MOVIES_DATA.popular.apiUrl, this.state.pageNumber);
+    } else if (this.props.location.pathname === MOVIES_DATA.nowPlaying.route) {
+      this.props.getMovies(MOVIES_DATA.nowPlaying.apiUrl, this.state.pageNumber);
+    } else if (this.props.location.pathname === MOVIES_DATA.comingSoon.route) {
+      this.props.getMovies(MOVIES_DATA.comingSoon.apiUrl, this.state.pageNumber);
     }
+  }
+
+  handleShowMovieDetails = (movie) => {
+    const movieCreditsUrl = `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${process.env.REACT_APP_API_KEY}`;
+    axios.get(movieCreditsUrl)
+    .then(res => {
+      this.setState({
+        showMovieDetails: !this.state.showMovieDetails,
+        movieData: movie,
+        movieCreditsData: res.data
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
   closeMovieTrailerModal = () => {
     this.setState({ showModal: false });
+  }
+
+  sectionTitleHandle() {
+    let title = '';
+    for (let key in MOVIES_DATA) {
+      MOVIES_DATA[key].route === this.props.location.pathname ? title = MOVIES_DATA[key].title : null;
+    }
+    return title;
   }
 
   findOfficialTrailer = (videosDataArray) => {
@@ -87,14 +107,15 @@ class ComingSoon extends Component {
     axios.get(movieUrl)
       .then(res => {
         const videosDataArray = res.data.videos.results;
-
         this.setState({
           movieId,
           movieVideoKey: this.findOfficialTrailer(videosDataArray),
           showModal: true
-        });
+        })
+      .catch(error => {
+        console.log(error);
       })
-
+    })
   }
 
   showBriefDescription = (description) => {
@@ -103,33 +124,36 @@ class ComingSoon extends Component {
 
   render() {
     const { allMovies } = this.props;
-    console.log('------------------------------------');
-    console.log(this.props);
-    console.log('------------------------------------');
+    if (!this.state.showMovieDetails) {
+      return (
+        <SectionWrapper>
+          <MoviesWrapper>
+            <TitleWrapper>
+              <SectionTitle>{this.sectionTitleHandle()}</SectionTitle>
+            </TitleWrapper>
+            {Object.keys(allMovies).length > 0 && allMovies.results.map((movie) => {
+              return (
+                <SingleMovie movie={movie}
+                  showBriefDescription={this.showBriefDescription(movie.overview)}
+                  getMovieTrailerFromApiAndShowModal={this.getMovieTrailerFromApiAndShowModal}
+                  handleShowMovieDetails={this.handleShowMovieDetails}
+                />
+              );
+            })}
+          </MoviesWrapper>
+          <MovieModal
+            show={this.state.showModal}
+            closeMovieTrailerModal={this.closeMovieTrailerModal}
+            container={this}
+            movieId={this.state.movieId}
+            movieVideoKey={this.state.movieVideoKey}
+          />
+        </SectionWrapper>
+      );
+    }
     return (
-      <SectionWrapper>
-        <MoviesWrapper>
-          <TitleWrapper>
-            <SectionTitle>Coming Soon</SectionTitle>
-          </TitleWrapper>
-          {Object.keys(allMovies).length > 0 && allMovies.results.map((movie) => {
-            return (
-              <Movie movie={movie}
-                showBriefDescription={this.showBriefDescription(movie.overview)}
-                getMovieTrailerFromApiAndShowModal={this.getMovieTrailerFromApiAndShowModal}
-              />
-            );
-          })}
-        </MoviesWrapper>
-        <MovieModal
-          show={this.state.showModal}
-          closeMovieTrailerModal={this.closeMovieTrailerModal}
-          container={this}
-          movieId={this.state.movieId}
-          movieVideoKey={this.state.movieVideoKey}
-        />
-      </SectionWrapper>
-    );
+      <DetailsForMovie movieData={this.state.movieData} />
+    )
   };
 };
 

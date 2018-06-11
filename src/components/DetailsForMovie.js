@@ -84,38 +84,8 @@ transition: background-color 1s;
 }
 `;
 
-export default function Movie(props) {
-  const { movie } = props
+export const DetailsForMovie = (props) => {
   return (
-    <MovieSection>
-      <Wrapper>
-        <Title>{movie.title}</Title>
-        <ReleaseDate>{movie.release_date}</ReleaseDate>
-        <Description>
-          <Text>
-            {props.showBriefDescription}
-            <Link to="/movie-details">
-              <ReadMoreLink>Read more...</ReadMoreLink>
-            </Link>
-          </Text>
-          <IconsWrapper >
-            <Icon thumbsDown>
-              <FontAwesome name="thumbs-down" />
-            </Icon>
-            <Icon>
-              <FontAwesome name="thumbs-up" />
-            </Icon>
-            <Icon>
-              <FontAwesome name="star" />
-            </Icon>
-            <Icon 
-            bsStyle="primary" bsSize="large" onClick={() => props.getMovieTrailerFromApiAndShowModal(movie.id)}>
-              <FontAwesome name="play" />
-            </Icon>
-          </IconsWrapper>
-        </Description>
-      </Wrapper>
-      <Img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="img" />
-    </MovieSection>
+    <h1>{console.log("dfdfdfdfdfdf")}</h1>
   );
 }

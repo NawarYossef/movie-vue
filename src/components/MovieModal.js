@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
+import { YOUTUBE_BASE_URL } from "../constants.js"
+
 import 'bootstrap/dist/css/bootstrap.css';
 
  export default function MovieModal(props) {
@@ -17,7 +19,7 @@ import 'bootstrap/dist/css/bootstrap.css';
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <iframe width="420" height="345" src={`https://www.youtube.com/embed/${props.movieVideoKey}`}>
+        <iframe width="420" height="345" src={`${YOUTUBE_BASE_URL}${props.movieVideoKey}`}>
         </iframe>
       </Modal.Body>
       <Modal.Footer>

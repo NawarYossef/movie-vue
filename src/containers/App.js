@@ -5,7 +5,7 @@ import 'normalize.css';
 import styled from 'styled-components';
 import LandingPage from './LandingPage';
 import Header from '../components/Header';
-import ComingSoon from './ComingSoon';
+import Movies from './Movies';
 
 const PageWrapper = styled.div`
 text-align: center;
@@ -35,9 +35,9 @@ class App extends Component {
         <PageWrapper>
           <Header />
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/movies/now-playing" component={ComingSoon} />
-          <Route exact path="/movies/popular" component={ComingSoon} />
-          <Route exact path="/movies/coming-soon" component={ComingSoon} />
+          <Route exact path="/movies/now-playing" component={Movies} />
+          <Route exact path="/movies/popular" component={Movies} />
+          <Route exact path="/movies/coming-soon" component={Movies} />
         </PageWrapper>
       </Router>
     );

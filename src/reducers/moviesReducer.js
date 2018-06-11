@@ -2,8 +2,6 @@ import * as actions from '../actions/action';
 
 const initialState = {
   allMovies: {},
-  popularMovies: [],
-  inTheaters: [],
   singleMovie: {},
   paginationCounter: 1
 };
