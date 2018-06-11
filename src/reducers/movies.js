@@ -1,7 +1,7 @@
 import * as actions from '../actions/action';
 
 const initialState = {
-  newMovies: {},
+  allMovies: {},
   popularMovies: [],
   inTheaters: [],
   singleMovie: {},
@@ -13,7 +13,7 @@ export default function movies(state = initialState, action) {
     case actions.GET_NEW_MOVIES_SUCCESS:
       return {
         ...state,
-        newMovies: action.movies
+        allMovies: action.movies
       }
     default:
       return state;

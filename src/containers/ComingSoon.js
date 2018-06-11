@@ -102,7 +102,7 @@ class ComingSoon extends Component {
   }
 
   render() {
-    const { newMovies } = this.props;
+    const { allMovies } = this.props;
     console.log('------------------------------------');
     console.log(this.props);
     console.log('------------------------------------');
@@ -112,7 +112,7 @@ class ComingSoon extends Component {
           <TitleWrapper>
             <SectionTitle>Coming Soon</SectionTitle>
           </TitleWrapper>
-          {Object.keys(newMovies).length > 0 && newMovies.results.map((movie) => {
+          {Object.keys(allMovies).length > 0 && allMovies.results.map((movie) => {
             return (
               <Movie movie={movie}
                 showBriefDescription={this.showBriefDescription(movie.overview)}
@@ -138,12 +138,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  newMovies: state.movies.newMovies
+  allMovies: state.movies.allMovies
 });
 
 ComingSoon.propTypes = {
-  getNewMovies: PropTypes.func.isRequired,
-  newMovies: PropTypes.object
+  getMovies: PropTypes.func.isRequired,
+  allMovies: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ComingSoon);
