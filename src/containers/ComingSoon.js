@@ -54,8 +54,21 @@ class ComingSoon extends Component {
   }
 
 
+  // componentDidMount = () => {
+  //   console.log('------------------------------------');
+  //   console.log("this is the url", MOVIE_API_DATA.popular.url);
+  //   console.log('------------------------------------');
+  //   this.props.getMovies(MOVIE_API_DATA.popular.url, this.state.pageNumber);
+  // }
+
   componentDidMount = () => {
-    this.props.getMovies();
+    if (this.props.location.pathname === MOVIE_API_DATA.popular.route) {
+      this.props.getMovies(MOVIE_API_DATA.popular.url, this.state.pageNumber);
+    } else if (this.props.location.pathname === MOVIE_API_DATA.nowPlaying.route) {
+      this.props.getMovies(MOVIE_API_DATA.nowPlaying.url, this.state.pageNumber);
+    } else if (this.props.location.pathname === MOVIE_API_DATA.comingSoon.route) {
+      this.props.getMovies(MOVIE_API_DATA.comingSoon.url, this.state.pageNumber);
+    }
   }
 
   closeMovieTrailerModal = () => {
@@ -90,6 +103,9 @@ class ComingSoon extends Component {
 
   render() {
     const { newMovies } = this.props;
+    console.log('------------------------------------');
+    console.log(this.props);
+    console.log('------------------------------------');
     return (
       <SectionWrapper>
         <MoviesWrapper>
@@ -106,19 +122,19 @@ class ComingSoon extends Component {
           })}
         </MoviesWrapper>
         <MovieModal
-        show={this.state.showModal}
-        closeMovieTrailerModal={this.closeMovieTrailerModal}
-        container={this}
-        movieId={this.state.movieId}
-        movieVideoKey={this.state.movieVideoKey}
-      />
+          show={this.state.showModal}
+          closeMovieTrailerModal={this.closeMovieTrailerModal}
+          container={this}
+          movieId={this.state.movieId}
+          movieVideoKey={this.state.movieVideoKey}
+        />
       </SectionWrapper>
     );
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getMovies: () => dispatch(getMovies())
+  getMovies: (url, pageNumber) => dispatch(getMovies(url, pageNumber))
 });
 
 const mapStateToProps = state => ({

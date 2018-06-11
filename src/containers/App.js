@@ -5,7 +5,6 @@ import 'normalize.css';
 import styled from 'styled-components';
 import LandingPage from './LandingPage';
 import Header from '../components/Header';
-import InTheaters from './InTheaters';
 import ComingSoon from './ComingSoon';
 
 const PageWrapper = styled.div`
@@ -36,7 +35,8 @@ class App extends Component {
         <PageWrapper>
           <Header />
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/movies/now-playing" component={InTheaters} />
+          <Route exact path="/movies/now-playing" component={ComingSoon} />
+          <Route exact path="/movies/popular" component={ComingSoon} />
           <Route exact path="/movies/coming-soon" component={ComingSoon} />
         </PageWrapper>
       </Router>

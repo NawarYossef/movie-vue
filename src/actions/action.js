@@ -1,19 +1,13 @@
-// -------------- GET new movies --------------------
+// -------------- GET movies --------------------
 export const GET_NEW_MOVIES_SUCCESS = 'GET_NEW_MOVIES_SUCCESS';
 export const getNewMoviesSuccess = movies => ({
   type: GET_NEW_MOVIES_SUCCESS,
   movies
 });
 
-export const getMovies = (pageNumber) => {
+export const getMovies = (url, pageNumber) => {
   return dispatch => {
-    fetch(`https://api.themoviedb.org/4/discover/movie?primary_release_date.gte=2018-4-7&page=1&api_key=${process.env.REACT_APP_API_KEY}&language=en-US`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      }
-    })
+    fetch(url)
       .then(res => {
         return res.json();
       })
