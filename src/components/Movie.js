@@ -109,7 +109,7 @@ export default function Movie(props) {
               <FontAwesome name="star" />
             </Icon>
             <Icon 
-            bsStyle="primary" bsSize="large" onClick={() => props.showMovieTrailerModal(movie.id)}>
+            bsStyle="primary" bsSize="large" onClick={() => props.getMovieTrailerFromApiAndShowModal(movie.id)}>
               <FontAwesome name="play" />
             </Icon>
           </IconsWrapper>
