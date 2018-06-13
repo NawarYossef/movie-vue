@@ -13,6 +13,7 @@ flex: 0 0 48%;
 height: 300px;
 margin-bottom: 35px;
 color: white;
+border-radius: 3px;
 box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 transition: box-shadow 1s;
 &:hover {
@@ -21,17 +22,16 @@ transition: box-shadow 1s;
 `;
 
 const Wrapper = styled.div`
-font-size: 1em;
 margin: 0 auto;
 padding: 10px 0px;
 `;
 const Title = styled.h3`
-font-size: 1.1em;
+font-size: 1.5em;
 margin-bottom: 0px;
 color: #ffffff;
 `;
 const ReleaseDate = styled.h6`
-font-size: 0.9em;
+font-size: 1.2em;
 margin-bottom: 10px;
 margin-top: 0px;
 color: #D2691E;
@@ -39,7 +39,7 @@ color: #D2691E;
 const Description = styled.div`
 font-size: 0.9em;
 text-align: left;
-line-height: 120%;
+line-height: 130%;
 padding: 10px;
 color: #e1e1e1;
 `;
@@ -47,7 +47,8 @@ color: #e1e1e1;
 const Text = styled.p`
 height: 130px;
 margin: 0px;
-margin-bottom: 30px;
+font-size: 1.1em;
+margin-bottom: 10px;
 `;
 const ReadMoreLink = styled.span`
 display: block;
@@ -72,9 +73,9 @@ margin: 0 auto;
 const Icon = styled.div`
 font-size: 1.4em;
 display: inline-block;
-border-radius: 60px;
+border-radius: 50%;
 border: 1px solid gray;
-padding: 15px;
+padding: 17px;
 padding-top: ${props => props.thumbsDown ? '15px' : '15px'};
 transition: background-color 1s;
 &:hover {
@@ -94,9 +95,9 @@ export const SingleMovie = props => {
         <Description>
           <Text>
             {props.showBriefDescription}
-            <button to="/movie-details">
+            <p>
               <ReadMoreLink onClick={() => props.handleShowMovieDetails(movie)}>Read more...</ReadMoreLink>
-            </button>
+            </p>
           </Text>
           <IconsWrapper >
             <Icon thumbsDown>

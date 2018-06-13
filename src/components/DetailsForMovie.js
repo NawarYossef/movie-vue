@@ -4,77 +4,95 @@ import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
 
-const MovieSection = styled.li`
+const MainSection = styled.section`
+width: 100%;
+background-color: #051929;
+padding: 50px;
+`
+
+const MovieSection = styled.section`
 display: flex;
+flex: 0 0 30%;
+justify-content: center;
+padding: 20px;
 flex-direction: row-reverse; 
-background: #222121;
+background-color: #051929;
 border: none;
-flex: 0 0 48%;
-height: 300px;
-margin-bottom: 35px;
+width: 90%;
+margin: 110px auto 35px auto;
 color: white;
-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-transition: box-shadow 1s;
-&:hover {
-  box-shadow: 0 15px 20px rgba(255, 254, 254, 0.19), 0 6px 6px rgba(250, 250, 250, 0.23);
-}
 `;
 
 const Wrapper = styled.div`
-font-size: 1em;
 margin: 0 auto;
-padding: 10px 0px;
+flex: 2 1 auto;
+display: inline-block;
+width: 100%;  
 `;
+
+const Credits = styled.div`
+text-align: left;
+line-height: 150%;
+padding: 0px 20px;
+color: #e1e1e1;
+`;
+
 const Title = styled.h3`
-font-size: 1.1em;
+font-size: 2.8em;
 margin-bottom: 0px;
+margin-top: 0px;
 color: #ffffff;
 `;
 const ReleaseDate = styled.h6`
-font-size: 0.9em;
+font-size: 1.3em;
 margin-bottom: 10px;
 margin-top: 0px;
 color: #D2691E;
 `;
 const Description = styled.div`
-font-size: 0.9em;
 text-align: left;
-line-height: 120%;
-padding: 10px;
+line-height: 150%;
+padding: 0px 20px;
 color: #e1e1e1;
 `;
 
-const Text = styled.p`
-height: 130px;
+const TextWrapper = styled.div`
 margin: 0px;
-margin-bottom: 30px;
 `;
-const ReadMoreLink = styled.span`
+
+const SectionTitle = styled.h2`
+font-size: 1.6em;
 display: block;
-margin-top: 5px;
-font-size: 0.9em;
-color: #0ac70a;
-&:hover {
-  cursor: pointer;
-}
+margin-bottom: 10px;
+margin-top: 30px;
 `;
-const Img = styled.img`
-height: 100%;
+const DescriptionParagraph = styled.p`
+font-size: 1em;
+display: block;
+`;
+
+const PosterWrapper = styled.div`
+display: inline-block;
+max-width: 100%;
+`;
+const Poster = styled.img`
+  max-width: 100%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 3px;
 `;
 
 const IconsWrapper = styled.div`
 font-size: 0.9em;
-width: 100%;
+width: 60%;
 display: flex;
 justify-content: space-around;
 margin: 0 auto;
 `;
 const Icon = styled.div`
 font-size: 1.4em;
-display: inline-block;
-border-radius: 60px;
+border-radius: 50%;
 border: 1px solid gray;
-padding: 15px;
+padding: 18px;
 padding-top: ${props => props.thumbsDown ? '15px' : '15px'};
 transition: background-color 1s;
 &:hover {
@@ -84,8 +102,100 @@ transition: background-color 1s;
 }
 `;
 
-export const DetailsForMovie = (props) => {
+const PlayTrailerIcon = styled.div`
+font-size: 1.4em;
+display: inline-block;
+padding: 15px;
+padding-top: ${props => props.thumbsDown ? '15px' : '15px'};
+padding-left: 0px;
+&:hover {
+cursor: pointer;
+}
+`;
+const TrailerText = styled.span`
+  font-size: 1em;
+  margin-left: 5px;
+`
+const CreditsWrapper = styled.div`
+display: flex;
+justify-content: start;
+`
+
+const CastMember = styled.div`
+display: inline-block;
+width: 60%;
+`
+const CastName = SectionTitle.extend`
+margin-bottom: 5px;
+margin-top: 0px;
+font-size: 1.2em;
+`
+const JobTitle = DescriptionParagraph.extend`
+
+`
+
+export const DetailsForMovie = props => {
+  const { movieData } = props;
   return (
-    <h1>{console.log("dfdfdfdfdfdf")}</h1>
+    <MainSection>
+      <MovieSection>
+        <Wrapper>
+          <Title>{movieData.title}</Title>
+          <ReleaseDate>{movieData.release_date}</ReleaseDate>
+          <Description>
+            <IconsWrapper >
+              <Icon thumbsDown>
+                <FontAwesome name="thumbs-down" />
+              </Icon>
+              <Icon>
+                <FontAwesome name="thumbs-up" />
+              </Icon>
+              <Icon>
+                <FontAwesome name="star" />
+              </Icon>
+              <PlayTrailerIcon
+                bsStyle="primary" bsSize="large" onClick={() => props.getMovieTrailerFromApiAndShowModal(movieData.id)}>
+                <FontAwesome name="play" />
+                <TrailerText>Play Trailer</TrailerText>
+              </PlayTrailerIcon>
+            </IconsWrapper>
+            <TextWrapper>
+              <SectionTitle>Overview</SectionTitle>
+              <DescriptionParagraph>
+                {movieData.overview}
+              </DescriptionParagraph>
+            </TextWrapper>
+          </Description>
+          <Credits>
+            <SectionTitle>Featured Crew</SectionTitle>
+            <CreditsWrapper>
+              {
+                props.movieWriters.map((writer) => {
+                  return (
+                    <CastMember>
+                      <CastName>{writer.name}</CastName>
+                      <JobTitle>writer</JobTitle>
+                    </CastMember>
+                  )
+                })
+              }
+              {
+                props.movieDirectors.map((director) => {
+                  return (
+                    <CastMember>
+                      <CastName>{director.name}</CastName>
+                      <JobTitle>Director</JobTitle>
+                    </CastMember>
+                  )
+                })
+              }
+            </CreditsWrapper>
+          </Credits>
+        </Wrapper>
+        <PosterWrapper>
+          <Poster src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`} alt="img" />
+        </PosterWrapper>
+      </MovieSection>
+    </MainSection>
   );
 }

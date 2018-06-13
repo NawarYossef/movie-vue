@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.css';
+import 'normalize.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -12,8 +14,6 @@ import { DetailsForMovie } from '../components/DetailsForMovie';
 import { MOVIES_DATA } from "../constants.js"
 import { Modal, Button } from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'normalize.css';
 
 
 const TitleWrapper = styled.div`
@@ -71,16 +71,19 @@ class ComingSoon extends Component {
   handleShowMovieDetails = (movie) => {
     const movieCreditsUrl = `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${process.env.REACT_APP_API_KEY}`;
     axios.get(movieCreditsUrl)
-    .then(res => {
-      this.setState({
-        showMovieDetails: !this.state.showMovieDetails,
-        movieData: movie,
-        movieCreditsData: res.data
+      .then(res => {
+        console.log('------------------------------------');
+        console.log(res.data.crew.filter(data => data.job.toLowerCase() === "director"));
+        console.log('------------------------------------');
+        this.setState({
+          showMovieDetails: !this.state.showMovieDetails,
+          movieData: movie,
+          movieCreditsData: res.data
+        })
       })
-    })
-    .catch(error => {
-      console.log(error);
-    })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   closeMovieTrailerModal = () => {
@@ -112,15 +115,23 @@ class ComingSoon extends Component {
           movieVideoKey: this.findOfficialTrailer(videosDataArray),
           showModal: true
         })
+      })
       .catch(error => {
         console.log(error);
       })
-    })
   }
 
   showBriefDescription = (description) => {
     return `${description.split('.')[0]}.`;
   }
+
+  getMovieDirectors = () => {
+    return this.state.movieCreditsData.crew.filter(data => data.job.toLowerCase() === "director")
+  } 
+
+  getMovieWriters = () => {
+    return this.state.movieCreditsData.crew.filter(data => data.job.toLowerCase() === "writer")
+  } 
 
   render() {
     const { allMovies } = this.props;
@@ -147,12 +158,18 @@ class ComingSoon extends Component {
             container={this}
             movieId={this.state.movieId}
             movieVideoKey={this.state.movieVideoKey}
+            getMovieTrailerFromApiAndShowModal={this.getMovieTrailerFromApiAndShowModal}
           />
         </SectionWrapper>
       );
     }
     return (
-      <DetailsForMovie movieData={this.state.movieData} />
+      <DetailsForMovie 
+      movieData={this.state.movieData} 
+      movieCreditsData={this.state.movieCreditsData}
+      movieWriters={this.getMovieWriters()}
+      movieDirectors={this.getMovieDirectors()}
+      />
     )
   };
 };
