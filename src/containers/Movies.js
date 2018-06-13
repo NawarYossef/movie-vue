@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
 import { getMovies } from '../actions/action';
-import { SingleMovie } from '../components/SingleMovie';
+import { SingleMovieList } from '../components/SingleMovieList';
 import MovieModal from '../components/MovieModal';
 import { DetailsForMovie } from '../components/DetailsForMovie';
 import { MOVIES_DATA } from "../constants.js"
@@ -127,11 +127,11 @@ class ComingSoon extends Component {
 
   getMovieDirectors = () => {
     return this.state.movieCreditsData.crew.filter(data => data.job.toLowerCase() === "director")
-  } 
+  }
 
   getMovieWriters = () => {
     return this.state.movieCreditsData.crew.filter(data => data.job.toLowerCase() === "writer")
-  } 
+  }
 
   render() {
     const { allMovies } = this.props;
@@ -144,7 +144,7 @@ class ComingSoon extends Component {
             </TitleWrapper>
             {Object.keys(allMovies).length > 0 && allMovies.results.map((movie) => {
               return (
-                <SingleMovie movie={movie}
+                <SingleMovieList movie={movie}
                   showBriefDescription={this.showBriefDescription(movie.overview)}
                   getMovieTrailerFromApiAndShowModal={this.getMovieTrailerFromApiAndShowModal}
                   handleShowMovieDetails={this.handleShowMovieDetails}
@@ -153,7 +153,7 @@ class ComingSoon extends Component {
             })}
           </MoviesWrapper>
           <MovieModal
-            show={this.state.showModal}
+            showModal={this.state.showModal}
             closeMovieTrailerModal={this.closeMovieTrailerModal}
             container={this}
             movieId={this.state.movieId}
@@ -164,11 +164,17 @@ class ComingSoon extends Component {
       );
     }
     return (
-      <DetailsForMovie 
-      movieData={this.state.movieData} 
-      movieCreditsData={this.state.movieCreditsData}
-      movieWriters={this.getMovieWriters()}
-      movieDirectors={this.getMovieDirectors()}
+      <DetailsForMovie
+        showModal={this.state.showModal}
+        closeMovieTrailerModal={this.closeMovieTrailerModal}
+        movieId={this.state.movieId}
+        showMovieDetails={this.state.showMovieDetails}
+        movieVideoKey={this.state.movieVideoKey}
+        getMovieTrailerFromApiAndShowModal={this.getMovieTrailerFromApiAndShowModal}
+        movieData={this.state.movieData}
+        movieCreditsData={this.state.movieCreditsData}
+        movieWriters={this.getMovieWriters()}
+        movieDirectors={this.getMovieDirectors()}
       />
     )
   };

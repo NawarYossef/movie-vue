@@ -1,0 +1,66 @@
+import React, { Component } from 'react';
+import 'normalize.css';
+import FontAwesome from 'react-fontawesome';
+import styled from 'styled-components';
+
+const CreditsWrapper = styled.div`
+display: flex;
+justify-content: start;
+`
+const AllCredits = styled.div`
+text-align: left;
+line-height: 150%;
+padding: 0px 20px;
+color: #e1e1e1;
+`;
+
+const CastMember = styled.div`
+display: inline-block;
+width: 60%;
+`
+const CastName = styled.h2`
+display: block;
+margin-bottom: 5px;
+margin-top: 0px;
+font-size: 1.2em;
+`
+const SectionTitle = styled.h2`
+font-size: 1.6em;
+display: block;
+margin-bottom: 10px;
+margin-top: 30px;
+`;
+
+const JobTitle = styled.p`
+`
+
+export const Credits = props => {
+  return (
+    <AllCredits>
+      <SectionTitle>Featured Crew</SectionTitle>
+      <CreditsWrapper>
+        {
+          props.movieWriters.map((writer) => {
+            return (
+              <CastMember>
+                <CastName>{writer.name}</CastName>
+                <JobTitle>writer</JobTitle>
+              </CastMember>
+            )
+          })
+        }
+        {
+          props.movieDirectors.map((director) => {
+            return (
+              <CastMember>
+                <CastName>{director.name}</CastName>
+                <JobTitle>Director</JobTitle>
+              </CastMember>
+            )
+          })
+        }
+      </CreditsWrapper>
+    </AllCredits>
+  );
+
+}

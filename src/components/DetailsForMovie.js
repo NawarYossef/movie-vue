@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
+import { Modal, Button } from 'react-bootstrap';
+import MovieModal from './MovieModal';
+import { Credits } from './Credits';
 
 const MainSection = styled.section`
 width: 100%;
@@ -28,13 +31,6 @@ margin: 0 auto;
 flex: 2 1 auto;
 display: inline-block;
 width: 100%;  
-`;
-
-const Credits = styled.div`
-text-align: left;
-line-height: 150%;
-padding: 0px 20px;
-color: #e1e1e1;
 `;
 
 const Title = styled.h3`
@@ -121,21 +117,11 @@ display: flex;
 justify-content: start;
 `
 
-const CastMember = styled.div`
-display: inline-block;
-width: 60%;
-`
-const CastName = SectionTitle.extend`
-margin-bottom: 5px;
-margin-top: 0px;
-font-size: 1.2em;
-`
-const JobTitle = DescriptionParagraph.extend`
-
-`
-
 export const DetailsForMovie = props => {
   const { movieData } = props;
+  console.log('------------------------------------');
+  console.log(props.movieDirectors);
+  console.log('------------------------------------');
   return (
     <MainSection>
       <MovieSection>
@@ -166,36 +152,24 @@ export const DetailsForMovie = props => {
               </DescriptionParagraph>
             </TextWrapper>
           </Description>
-          <Credits>
-            <SectionTitle>Featured Crew</SectionTitle>
-            <CreditsWrapper>
-              {
-                props.movieWriters.map((writer) => {
-                  return (
-                    <CastMember>
-                      <CastName>{writer.name}</CastName>
-                      <JobTitle>writer</JobTitle>
-                    </CastMember>
-                  )
-                })
-              }
-              {
-                props.movieDirectors.map((director) => {
-                  return (
-                    <CastMember>
-                      <CastName>{director.name}</CastName>
-                      <JobTitle>Director</JobTitle>
-                    </CastMember>
-                  )
-                })
-              }
-            </CreditsWrapper>
-          </Credits>
+
+          <Credits movieWriters={props.movieWriters}
+            movieDirectors={props.movieDirectors}
+            movieCreditsData={props.movieCreditsData}
+          />
         </Wrapper>
         <PosterWrapper>
           <Poster src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`} alt="img" />
         </PosterWrapper>
       </MovieSection>
+      <MovieModal
+        show={props.showModal}
+        closeMovieTrailerModal={props.closeMovieTrailerModal}
+        container={this}
+        movieId={props.movieId}
+        movieVideoKey={props.movieVideoKey}
+        getMovieTrailerFromApiAndShowModal={props.getMovieTrailerFromApiAndShowModal}
+      />
     </MainSection>
   );
 }
