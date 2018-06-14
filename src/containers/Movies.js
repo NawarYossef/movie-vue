@@ -8,12 +8,11 @@ import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
 import { getMovies } from '../actions/action';
-import { SingleMovieList } from '../components/SingleMovieList';
-import MovieModal from '../components/MovieModal';
-import { DetailsForMovie } from '../components/DetailsForMovie';
+import { BriefDescription } from '../components/movies/BriefDescription';
+import MovieModal from '../components/movies/MovieModal';
+import { MovieDetails } from '../components/movies/MovieDetails';
 import { MOVIES_DATA } from "../constants.js"
 import { Modal, Button } from 'react-bootstrap';
-
 
 
 const TitleWrapper = styled.div`
@@ -72,9 +71,6 @@ class ComingSoon extends Component {
     const movieCreditsUrl = `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${process.env.REACT_APP_API_KEY}`;
     axios.get(movieCreditsUrl)
       .then(res => {
-        console.log('------------------------------------');
-        console.log(res.data.crew.filter(data => data.job.toLowerCase() === "director"));
-        console.log('------------------------------------');
         this.setState({
           showMovieDetails: !this.state.showMovieDetails,
           movieData: movie,
@@ -144,7 +140,7 @@ class ComingSoon extends Component {
             </TitleWrapper>
             {Object.keys(allMovies).length > 0 && allMovies.results.map((movie) => {
               return (
-                <SingleMovieList movie={movie}
+                <BriefDescription movie={movie}
                   showBriefDescription={this.showBriefDescription(movie.overview)}
                   getMovieTrailerFromApiAndShowModal={this.getMovieTrailerFromApiAndShowModal}
                   handleShowMovieDetails={this.handleShowMovieDetails}
@@ -164,7 +160,7 @@ class ComingSoon extends Component {
       );
     }
     return (
-      <DetailsForMovie
+      <MovieDetails
         showModal={this.state.showModal}
         closeMovieTrailerModal={this.closeMovieTrailerModal}
         movieId={this.state.movieId}

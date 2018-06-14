@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
-import { YOUTUBE_BASE_URL } from "../constants.js"
+import { YOUTUBE_BASE_URL } from "../../constants.js"
 
 import 'bootstrap/dist/css/bootstrap.css';
 
  export default function MovieModal(props) {
   return (
     <Modal
-      show={props.show}
+      show={props.showModal}
       onHide={props.closeMovieTrailerModal}
       container={this}
       aria- labelledby="contained-modal-title"

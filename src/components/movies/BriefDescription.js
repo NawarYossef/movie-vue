@@ -85,7 +85,7 @@ transition: background-color 1s;
 }
 `;
 
-export const SingleMovieList = props => {
+export const BriefDescription = props => {
   const { movie } = props
   return (
     <MovieSection>

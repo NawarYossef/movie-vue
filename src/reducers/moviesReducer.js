@@ -3,7 +3,12 @@ import * as actions from '../actions/action';
 const initialState = {
   allMovies: {},
   singleMovie: {},
-  paginationCounter: 1
+  pageCounter: 1,
+  movieId: '',
+  movieVideoKey: '',
+  showMovieDetails: false,
+  movieData: '',
+  movieCreditsData: {}
 };
 
 export default function movies(state = initialState, action) {
