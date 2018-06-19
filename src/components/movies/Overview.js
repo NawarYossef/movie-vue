@@ -74,7 +74,7 @@ export const Overview = props => {
           <FontAwesome name="star" />
         </Icon>
         <PlayTrailerIcon
-          bsStyle="primary" bsSize="large" onClick={props.getMovieTrailerFromApiAndShowModal(props.movieData.id)}>
+          bsStyle="primary" bsSize="large" onClick={() => props.getTrailerKeyAndShowModal(props.movieData.id)}>
           <FontAwesome name="play" />
           <TrailerText>Play Trailer</TrailerText>
         </PlayTrailerIcon>

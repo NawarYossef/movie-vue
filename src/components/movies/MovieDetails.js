@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
@@ -8,6 +9,7 @@ import MovieModal from './MovieModal';
 import { Credits } from './Credits';
 import { Overview } from './Overview';
 import { MoviePoster } from './MoviePoster';
+import { getTrailerKeyAndShowModal, getMovieCredits, closeModal } from '../../actions/action';
 
 const MainSection = styled.section`
 width: 100%;
@@ -79,33 +81,59 @@ const Poster = styled.img`
   border-radius: 3px;
 `;
 
-export const MovieDetails = props => {
-  const { movieData } = props;
-  return (
-    <MainSection>
-      <MovieSection>
-        <Wrapper>
-          <Title>{movieData.title}</Title>
-          <ReleaseDate>{movieData.release_date}</ReleaseDate>
 
-          <Overview movieData={movieData}
-            getMovieTrailerFromApiAndShowModal={props.getMovieTrailerFromApiAndShowModal} />
+export class MovieDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movieData: '',
+      movieCreditsData: ''
+    }
+  }
 
-          <Credits movieWriters={props.movieWriters}
-            movieDirectors={props.movieDirectors}
-            movieCreditsData={props.movieCreditsData}
-          />
-        </Wrapper>
-        <MoviePoster imgSrc={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}/>
-      </MovieSection>
-      <MovieModal
-        show={props.showModal}
-        closeMovieTrailerModal={props.closeMovieTrailerModal}
-        container={this}
-        movieId={props.movieId}
-        movieVideoKey={props.movieVideoKey}
-        getMovieTrailerFromApiAndShowModal={props.getMovieTrailerFromApiAndShowModal}
-      />
-    </MainSection>
-  );
+  componentDidMount() {
+    this.props.getMovieCredits(this.props.movieId)
+  }
+
+  render() {
+    return (
+      <MainSection>
+        <MovieSection>
+          <Wrapper>
+            <Title>{this.props.movieData.title}</Title>
+            <ReleaseDate>{this.props.movieData.release_date}</ReleaseDate>
+
+            <Overview movieData={this.props.movieData}
+              getTrailerKeyAndShowModal={this.props.getTrailerKeyAndShowModal} />
+
+            <Credits movieCreditsData={this.props.movieCreditsData} />
+          </Wrapper>
+          <MoviePoster imgSrc={`https://image.tmdb.org/t/p/w500${this.props.movieData.poster_path}`} />
+        </MovieSection>
+        <MovieModal
+          showModal={this.props.showModal}
+          closeModal={this.props.closeModal}
+          container={this}
+          movieId={this.props.movieId}
+          trailerKey={this.props.trailerKey}
+        />
+      </MainSection>
+    );
+  }
 }
+
+const mapDispatchToProps = dispatch => ({
+  getTrailerKeyAndShowModal: movieId => dispatch(getTrailerKeyAndShowModal(movieId)),
+  getMovieCredits: movieId => dispatch(getMovieCredits(movieId)),
+  closeModal: () => dispatch(closeModal())
+});
+
+const mapStateToProps = state => ({
+  movieData: state.movies.movieData,
+  movieCreditsData: state.movies.movieCreditsData,
+  movieId: state.movies.movieId,
+  trailerKey: state.movies.trailerKey,
+  showModal: state.movies.showModal,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

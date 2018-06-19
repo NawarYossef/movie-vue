@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
+import { getMovieDetails } from '../../actions/action';
 
 const MovieSection = styled.li`
 display: flex;
@@ -50,7 +52,7 @@ margin: 0px;
 font-size: 1.1em;
 margin-bottom: 10px;
 `;
-const ReadMoreLink = styled.span`
+const ReadMoreLink = styled(Link)`
 display: block;
 margin-top: 5px;
 font-size: 0.9em;
@@ -96,7 +98,7 @@ export const BriefDescription = props => {
           <Text>
             {props.showBriefDescription}
             <p>
-              <ReadMoreLink onClick={() => props.handleShowMovieDetails(movie)}>Read more...</ReadMoreLink>
+              <ReadMoreLink to='/movies/movie-details' onClick={() => props.storeMovieDataAndId(movie, movie.id)}>Read more...</ReadMoreLink>
             </p>
           </Text>
           <IconsWrapper >
@@ -110,7 +112,7 @@ export const BriefDescription = props => {
               <FontAwesome name="star" />
             </Icon>
             <Icon 
-            bsStyle="primary" bsSize="large" onClick={() => props.getMovieTrailerFromApiAndShowModal(movie.id)}>
+            bsStyle="primary" bsSize="large" onClick={() => props.getTrailerKeyAndShowModal(movie.id)}>
               <FontAwesome name="play" />
             </Icon>
           </IconsWrapper>

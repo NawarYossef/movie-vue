@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
   return (
     <Modal
       show={props.showModal}
-      onHide={props.closeMovieTrailerModal}
+      onHide={props.closeModal}
       container={this}
       aria- labelledby="contained-modal-title"
     >
@@ -19,11 +19,11 @@ import 'bootstrap/dist/css/bootstrap.css';
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <iframe width="420" height="345" src={`${YOUTUBE_BASE_URL}${props.movieVideoKey}`}>
+        <iframe width="420" height="345" src={`${YOUTUBE_BASE_URL}${props.trailerKey}`}>
         </iframe>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => props.closeMovieTrailerModal()}>Close</Button>
+        <Button onClick={() => props.closeModal()}>Close</Button>
       </Modal.Footer>
     </Modal>
   )

@@ -35,32 +35,36 @@ const JobTitle = styled.p`
 `
 
 export const Credits = props => {
-  return (
-    <AllCredits>
-      <SectionTitle>Featured Crew</SectionTitle>
-      <CreditsWrapper>
-        {
-          props.movieWriters.map((writer) => {
-            return (
-              <CastMember>
-                <CastName>{writer.name}</CastName>
-                <JobTitle>writer</JobTitle>
-              </CastMember>
-            )
-          })
-        }
-        {
-          props.movieDirectors.map((director) => {
-            return (
-              <CastMember>
-                <CastName>{director.name}</CastName>
-                <JobTitle>Director</JobTitle>
-              </CastMember>
-            )
-          })
-        }
-      </CreditsWrapper>
-    </AllCredits>
-  );
-
+  if (Object.keys(props.movieCreditsData).length) {
+    const movieWriters = props.movieCreditsData.crew.filter(data => data.job.toLowerCase() === "writer")
+    const movieDirectors = props.movieCreditsData.crew.filter(data => data.job.toLowerCase() === "director")
+    return (
+      <AllCredits>
+        <SectionTitle>Featured Crew</SectionTitle>
+        <CreditsWrapper>
+          {
+            movieWriters.map((writer) => {
+              return (
+                <CastMember>
+                  <CastName>{writer.name}</CastName>
+                  <JobTitle>writer</JobTitle>
+                </CastMember>
+              )
+            })
+          }
+          {
+            movieDirectors.map((director) => {
+              return (
+                <CastMember>
+                  <CastName>{director.name}</CastName>
+                  <JobTitle>Director</JobTitle>
+                </CastMember>
+              )
+            })
+          }
+        </CreditsWrapper>
+      </AllCredits>
+    );
+  }
+  return null;
 }

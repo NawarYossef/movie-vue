@@ -7,10 +7,10 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
-import { getMovies } from '../actions/action';
+import { getMovies, getMovieDetails, storeMovieDataAndId, getTrailerKeyAndShowModal, closeModal} from '../actions/action';
 import { BriefDescription } from '../components/movies/BriefDescription';
 import MovieModal from '../components/movies/MovieModal';
-import { MovieDetails } from '../components/movies/MovieDetails';
+import MovieDetails from '../components/movies/MovieDetails';
 import { MOVIES_DATA } from "../constants.js"
 import { Modal, Button } from 'react-bootstrap';
 
@@ -45,45 +45,16 @@ justify-content: space-between;
 class ComingSoon extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      movies: '',
-      pageNumber: 1,
-      movieId: '',
-      movieVideoKey: '',
-      showModal: false,
-      showMovieDetails: false,
-      movieData: '',
-      movieCreditsData: {}
-    };
   }
 
   componentDidMount = () => {
     if (this.props.location.pathname === MOVIES_DATA.popular.route) {
-      this.props.getMovies(MOVIES_DATA.popular.apiUrl, this.state.pageNumber);
+      this.props.getMovies(MOVIES_DATA.popular.apiUrl, this.props.pageCounter);
     } else if (this.props.location.pathname === MOVIES_DATA.nowPlaying.route) {
-      this.props.getMovies(MOVIES_DATA.nowPlaying.apiUrl, this.state.pageNumber);
+      this.props.getMovies(MOVIES_DATA.nowPlaying.apiUrl, this.props.pageCounter);
     } else if (this.props.location.pathname === MOVIES_DATA.comingSoon.route) {
-      this.props.getMovies(MOVIES_DATA.comingSoon.apiUrl, this.state.pageNumber);
+      this.props.getMovies(MOVIES_DATA.comingSoon.apiUrl, this.props.pageCounter);
     }
-  }
-
-  handleShowMovieDetails = (movie) => {
-    const movieCreditsUrl = `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${process.env.REACT_APP_API_KEY}`;
-    axios.get(movieCreditsUrl)
-      .then(res => {
-        this.setState({
-          showMovieDetails: !this.state.showMovieDetails,
-          movieData: movie,
-          movieCreditsData: res.data
-        })
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }
-
-  closeMovieTrailerModal = () => {
-    this.setState({ showModal: false });
   }
 
   sectionTitleHandle() {
@@ -94,94 +65,54 @@ class ComingSoon extends Component {
     return title;
   }
 
-  findOfficialTrailer = (videosDataArray) => {
-    const officialTrailers = videosDataArray.filter(video => {
-      return video.name.toLowerCase().split(" ").includes("official") && video.name.toLowerCase().split(" ").includes("trailer");
-    })
-    return officialTrailers.length ? officialTrailers[0].key : '';
-  }
-
-  getMovieTrailerFromApiAndShowModal = (movieId) => {
-    const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`
-    axios.get(movieUrl)
-      .then(res => {
-        const videosDataArray = res.data.videos.results;
-        this.setState({
-          movieId,
-          movieVideoKey: this.findOfficialTrailer(videosDataArray),
-          showModal: true
-        })
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }
-
   showBriefDescription = (description) => {
     return `${description.split('.')[0]}.`;
   }
 
-  getMovieDirectors = () => {
-    return this.state.movieCreditsData.crew.filter(data => data.job.toLowerCase() === "director")
-  }
-
-  getMovieWriters = () => {
-    return this.state.movieCreditsData.crew.filter(data => data.job.toLowerCase() === "writer")
-  }
-
   render() {
     const { allMovies } = this.props;
-    if (!this.state.showMovieDetails) {
-      return (
-        <SectionWrapper>
-          <MoviesWrapper>
-            <TitleWrapper>
-              <SectionTitle>{this.sectionTitleHandle()}</SectionTitle>
-            </TitleWrapper>
-            {Object.keys(allMovies).length > 0 && allMovies.results.map((movie) => {
-              return (
-                <BriefDescription movie={movie}
-                  showBriefDescription={this.showBriefDescription(movie.overview)}
-                  getMovieTrailerFromApiAndShowModal={this.getMovieTrailerFromApiAndShowModal}
-                  handleShowMovieDetails={this.handleShowMovieDetails}
-                />
-              );
-            })}
-          </MoviesWrapper>
-          <MovieModal
-            showModal={this.state.showModal}
-            closeMovieTrailerModal={this.closeMovieTrailerModal}
-            container={this}
-            movieId={this.state.movieId}
-            movieVideoKey={this.state.movieVideoKey}
-            getMovieTrailerFromApiAndShowModal={this.getMovieTrailerFromApiAndShowModal}
-          />
-        </SectionWrapper>
-      );
-    }
     return (
-      <MovieDetails
-        showModal={this.state.showModal}
-        closeMovieTrailerModal={this.closeMovieTrailerModal}
-        movieId={this.state.movieId}
-        showMovieDetails={this.state.showMovieDetails}
-        movieVideoKey={this.state.movieVideoKey}
-        getMovieTrailerFromApiAndShowModal={this.getMovieTrailerFromApiAndShowModal}
-        movieData={this.state.movieData}
-        movieCreditsData={this.state.movieCreditsData}
-        movieWriters={this.getMovieWriters()}
-        movieDirectors={this.getMovieDirectors()}
-      />
-    )
+      <SectionWrapper>
+        <MoviesWrapper>
+          <TitleWrapper>
+            <SectionTitle>{this.sectionTitleHandle()}</SectionTitle>
+          </TitleWrapper>
+          {Object.keys(allMovies).length > 0 && allMovies.results.map((movie) => {
+            return (
+              <BriefDescription
+                movie={movie}
+                showBriefDescription={this.showBriefDescription(movie.overview)}
+                getTrailerKeyAndShowModal={this.props.getTrailerKeyAndShowModal}
+                storeMovieDataAndId={this.props.storeMovieDataAndId}
+              />
+            );
+          })}
+        </MoviesWrapper>
+        <MovieModal
+          showModal={this.props.showModal}
+          closeModal={this.props.closeModal}
+          container={this}
+          movieId={this.props.movieId}
+          trailerKey={this.props.trailerKey}
+        />
+      </SectionWrapper>
+    );
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getMovies: (url, pageNumber) => dispatch(getMovies(url, pageNumber))
+  getMovies: (url, pageNumber) => dispatch(getMovies(url, pageNumber)),
+  storeMovieDataAndId: (movie, movieId) => dispatch(storeMovieDataAndId(movie, movieId)),
+  getTrailerKeyAndShowModal: movieId => dispatch(getTrailerKeyAndShowModal(movieId)),
+  closeModal: () => dispatch(closeModal())
 });
 
 const mapStateToProps = state => ({
-  allMovies: state.movies.allMovies
+  allMovies: state.movies.allMovies,
+  showModal: state.movies.showModal,
+  movieId: state.movies.movieId,
+  trailerKey: state.movies.trailerKey,
+  pageCounter: state.movies.pageCounter
 });
 
 ComingSoon.propTypes = {
