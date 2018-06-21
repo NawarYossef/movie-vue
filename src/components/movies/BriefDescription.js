@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
-import { getMovieDetails } from '../../actions/action';
 
 const MovieSection = styled.li`
 display: flex;
@@ -97,9 +95,9 @@ export const BriefDescription = props => {
         <Description>
           <Text>
             {props.showBriefDescription}
-            <p>
+            <span>
               <ReadMoreLink to='/movies/movie-details' onClick={() => props.storeMovieDataAndId(movie, movie.id)}>Read more...</ReadMoreLink>
-            </p>
+            </span>
           </Text>
           <IconsWrapper >
             <Icon thumbsDown>

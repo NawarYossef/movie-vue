@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
@@ -24,6 +24,7 @@ const ListElement = styled.li`
 
 const NavLink = styled(Link) `
   color: #ffffff;
+  font-size: 1.3em !important;
   display: block;
   margin-right: ${props => props.lastbtn ? '0px' : '60px'};
   &:hover {
@@ -33,8 +34,23 @@ const NavLink = styled(Link) `
     color: #d9d9d9;
   }
 `;
-const DropDownLink = styled.li`
+
+const Icon = styled.div`
+display: inline-block;
+margin-left: 5px;
+`;
+
+let DropDownContent = styled.div`
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0;
+`;
+
+const DropDownLink = styled.nav`
 color: #ffffff;
+font-size: 1.3em !important;
 position: relative;
 display: block;
 margin-right: 60px;
@@ -49,36 +65,10 @@ margin-bottom: 0px;
 }
 `;
 
-const Icon = styled.div`
-display: inline-block;
-margin-left: 5px;
-`;
-
-const SubLink = styled(Link) `
-float: none;
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
-text-align: left;
-&:hover {
-  background-color: #ddd;
-}
-`;
-
-let DropDownContent = styled.div`
-display: none;
-position: absolute;
-background-color: #f9f9f9;
-min-width: 160px;
-box-shadow: 0;
-`;
-
-
 export default function AppNav() {
 
   const links = [
-    <DropDownLink>Movies<Icon><FontAwesome className={"fa fa-caret-down"} size="1" /></Icon>
+    <DropDownLink className={"dropDownMenu"}>Movies<Icon><FontAwesome name={"fa fa-caret-down"} size="lg" /></Icon>
       <ul className={"dropDownList"}>
       <li><Link to="/movies/coming-soon">Coming Soon</Link></li>
       <li><Link to="/movies/now-playing">Now Playing</Link></li>

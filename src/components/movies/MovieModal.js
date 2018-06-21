@@ -1,9 +1,15 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Modal, Button } from 'react-bootstrap';
-import { YOUTUBE_BASE_URL } from "../../constants.js"
+import React from 'react';
+import styled from 'styled-components';
+import { Modal } from 'react-bootstrap';
+import { YOUTUBE_BASE_URL } from "../../constants.js";
 
 import 'bootstrap/dist/css/bootstrap.css';
+import '../../styles/main.css'
+const TrailerFrame = styled.iframe`
+width: 100%;
+height: 100%;
+`
+
 
  export default function MovieModal(props) {
   return (
@@ -11,20 +17,14 @@ import 'bootstrap/dist/css/bootstrap.css';
       show={props.showModal}
       onHide={props.closeModal}
       container={this}
-      aria- labelledby="contained-modal-title"
+      aria-labelledby="contained-modal-title"
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title">
-          {props.movieId}
-        </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <iframe width="420" height="345" src={`${YOUTUBE_BASE_URL}${props.trailerKey}`}>
-        </iframe>
+      <Modal.Body width="100%">
+        <TrailerFrame src={`${YOUTUBE_BASE_URL}${props.trailerKey}`} frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
+        </TrailerFrame>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={() => props.closeModal()}>Close</Button>
-      </Modal.Footer>
     </Modal>
   )
 }

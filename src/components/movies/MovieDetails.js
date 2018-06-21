@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'normalize.css';
-import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
-import { Modal, Button } from 'react-bootstrap';
 import MovieModal from './MovieModal';
 import { Credits } from './Credits';
 import { Overview } from './Overview';
@@ -49,38 +46,6 @@ margin-bottom: 10px;
 margin-top: 0px;
 color: #D2691E;
 `;
-const Description = styled.div`
-text-align: left;
-line-height: 150%;
-padding: 0px 20px;
-color: #e1e1e1;
-`;
-
-const TextWrapper = styled.div`
-margin: 0px;
-`;
-
-const SectionTitle = styled.h2`
-font-size: 1.6em;
-display: block;
-margin-bottom: 10px;
-margin-top: 30px;
-`;
-const DescriptionParagraph = styled.p`
-font-size: 1em;
-display: block;
-`;
-
-const PosterWrapper = styled.div`
-display: inline-block;
-max-width: 100%;
-`;
-const Poster = styled.img`
-  max-width: 100%;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  border-radius: 3px;
-`;
-
 
 export class MovieDetails extends Component {
   constructor(props) {

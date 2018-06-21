@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { MOVIES_DATA } from "../constants.js";
 import history from '../history';
 
 // -------------- GET all movies --------------------

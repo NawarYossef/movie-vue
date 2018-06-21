@@ -64,10 +64,29 @@ nav ul li {
   color: #ffffff;
 }
 
-li:hover > ul {
+.dropDownMenu:hover > ul {
   display: inherit;
 }
 
+.modal-header .close {
+  margin-top: -2px;
+  margin-right: 10px;
+}
+
+.modal-header, .modal-body {
+  padding: 0px !important;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  background-color: #ffffff !important;
+  height: 450px;
+}
+
+.modal-body {
+  height: 100%;
+}
 /* footer styles */
 footer {
   background: lightblue;

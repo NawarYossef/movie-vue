@@ -2,17 +2,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import PropTypes from 'prop-types';
-import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
-import { getMovies, getMovieDetails, storeMovieDataAndId, getTrailerKeyAndShowModal, closeModal} from '../actions/action';
+import { getMovies, storeMovieDataAndId, getTrailerKeyAndShowModal, closeModal } from '../actions/action';
 import { BriefDescription } from '../components/movies/BriefDescription';
 import MovieModal from '../components/movies/MovieModal';
-import MovieDetails from '../components/movies/MovieDetails';
 import { MOVIES_DATA } from "../constants.js"
-import { Modal, Button } from 'react-bootstrap';
 
 
 const TitleWrapper = styled.div`
@@ -43,10 +38,6 @@ justify-content: space-between;
 `;
 
 class ComingSoon extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount = () => {
     if (this.props.location.pathname === MOVIES_DATA.popular.route) {
       this.props.getMovies(MOVIES_DATA.popular.apiUrl, this.props.pageCounter);
@@ -60,7 +51,9 @@ class ComingSoon extends Component {
   sectionTitleHandle() {
     let title = '';
     for (let key in MOVIES_DATA) {
-      MOVIES_DATA[key].route === this.props.location.pathname ? title = MOVIES_DATA[key].title : null;
+      if (MOVIES_DATA[key].route === this.props.location.pathname) {
+        title = MOVIES_DATA[key].title;
+      }
     }
     return title;
   }
@@ -80,6 +73,7 @@ class ComingSoon extends Component {
           {Object.keys(allMovies).length > 0 && allMovies.results.map((movie) => {
             return (
               <BriefDescription
+                key={movie.id}
                 movie={movie}
                 showBriefDescription={this.showBriefDescription(movie.overview)}
                 getTrailerKeyAndShowModal={this.props.getTrailerKeyAndShowModal}

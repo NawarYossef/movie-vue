@@ -12,7 +12,7 @@ module.exports = {
           "paths": ["src"]
         }
       }
-    },
+    },  
     "no-unused-vars": 0,
     "max-len": 0,
     "comma-dangle": 0,

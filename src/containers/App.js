@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'normalize.css';
 import styled from 'styled-components';
@@ -7,6 +6,8 @@ import LandingPage from './LandingPage';
 import Header from '../components/Header';
 import MovieDetails from '../components/movies/MovieDetails';
 import Movies from './Movies';
+import Dashboard from './Dashboard';
+import Community from './Community';
 
 const PageWrapper = styled.div`
 text-align: center;
@@ -14,10 +15,6 @@ margin: 0 auto;
 position: relative;
 box-sizing: border-box;
 `;
-
-const MainPage = styled.div`
-
-`
 
 class App extends Component {
   componentDidMount = () => {
@@ -36,6 +33,8 @@ class App extends Component {
         <PageWrapper>
           <Header />
           <Route exact path="/" component={LandingPage} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/Community" component={Community} />
           <Route exact path="/movies/now-playing" component={Movies} />
           <Route exact path="/movies/popular" component={Movies} />
           <Route exact path="/movies/coming-soon" component={Movies} />

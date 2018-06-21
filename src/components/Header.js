@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import PopcornImage from '../assets/cinema-icon.png'
 import 'normalize.css';
 import styled from 'styled-components';
@@ -44,7 +43,7 @@ export default function Header() {
         <HeaderWrapper>
           <WrapperForAppTitle>
             <AppTitle>MovieVue</AppTitle>
-          <img src={PopcornImage} className={'headerImage'} alt="cinematic-image"/>
+          <img src={PopcornImage} className={'headerImage'} alt=""/>
           </WrapperForAppTitle>
           <AppNav/>
         </HeaderWrapper>

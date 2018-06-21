@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
