@@ -1,29 +1,19 @@
-/* .dropDownButton {
-  color: #ffffff;
-  position: relative;
-  display: block;
-  margin-right: 60px;
-  border: none;
-  background-color:#d4141400;
+/* main */
+#root {
+  background-color: #051929;
+  width: 100%;
+  height: 100vh;
 }
 
-.dropDownButton:hover {
-  color: #d9d9d9;
-  background-color:#d4141400;
-  cursor: pointer;
-}
-.dropDownButton:hover .dropDownContent {
- 
+body {
+  background-color: "transparent" !important;
 }
 
-body ul .dropDownContent {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0;
-} */
-
+/* landing-page */
+.background {
+  background-image: url("../assets/landing-page-img.jpg");
+  background-position: 50% 20%;
+} 
 /* drop down menu styles */
 
 nav ul li {
@@ -54,6 +44,7 @@ nav ul li {
 
 .dropDownList li:hover>a {
   color: #d8d8d8;
+  text-decoration: none;
 }
 
 .dropDownList li:last-child {
@@ -82,34 +73,10 @@ nav ul li {
   top: 50%;
   background-color: #ffffff !important;
   height: 450px;
+  width: 100%;
 }
 
 .modal-body {
   height: 100%;
 }
 /* footer styles */
-footer {
-  background: lightblue;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  padding: 1%;
-  height: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-footer ul {
-  width: 60%;
-  margin: 0 auto;
-  /* padding: 10px 20px;   */
-}
-
-footer li {
-  display: inline;
-  padding-left: 30px;
-  color: #C7670E;
-}

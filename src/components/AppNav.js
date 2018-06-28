@@ -29,9 +29,11 @@ const NavLink = styled(Link) `
   margin-right: ${props => props.lastbtn ? '0px' : '60px'};
   &:hover {
     color: #d9d9d9;
+    text-decoration: none;
   }
-  &.active {
+  &:visited {
     color: #d9d9d9;
+    text-decoration: none;
   }
 `;
 
@@ -59,9 +61,11 @@ margin-bottom: 0px;
   display: block;
   color: #d9d9d9;
   cursor: pointer;
+  text-decoration: none;
 }
-&.active {
+&:visited {
   color: #d9d9d9;
+  text-decoration: none;
 }
 `;
 

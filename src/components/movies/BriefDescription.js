@@ -24,6 +24,7 @@ transition: box-shadow 1s;
 const Wrapper = styled.div`
 margin: 0 auto;
 padding: 10px 0px;
+width: 63%;
 `;
 const Title = styled.h3`
 font-size: 1.5em;
@@ -57,6 +58,8 @@ font-size: 0.9em;
 color: #0ac70a;
 &:hover {
   cursor: pointer;
+  text-decoration: none;
+  color: #574ca7;
 }
 `;
 const Img = styled.img`

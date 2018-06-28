@@ -1,6 +1,7 @@
-coming soon URL: https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2018-4-7&api_key=c50018ef917eb4b365574473fa381a3c&language=en-US
-
-in Theaters URL: https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=c50018ef917eb4b365574473fa381a3c&language=en-US
-
-Most popular URL: https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c50018ef917eb4b365574473fa381a3c&language=en-US
-
+## landing page
+## footer for movie section
+## show more pages of movies
+## show comments for buttons
+## responsive design
+## correct dates for movies
+## loading spinner

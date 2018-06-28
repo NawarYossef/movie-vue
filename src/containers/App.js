@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'normalize.css';
 import styled from 'styled-components';
-import LandingPage from './LandingPage';
+import LandingPage from './landing-page/LandingPage';
 import Header from '../components/Header';
 import MovieDetails from '../components/movies/MovieDetails';
 import Movies from './Movies';
@@ -15,6 +15,11 @@ margin: 0 auto;
 position: relative;
 box-sizing: border-box;
 `;
+
+const Page = styled(Router)`
+height: 100vh;
+background-color: #051929;
+`
 
 class App extends Component {
   componentDidMount = () => {
@@ -29,7 +34,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Page>
         <PageWrapper>
           <Header />
           <Route exact path="/" component={LandingPage} />
@@ -40,7 +45,7 @@ class App extends Component {
           <Route exact path="/movies/coming-soon" component={Movies} />
           <Route exact path="/movies/movie-details" component={MovieDetails} />
         </PageWrapper>
-      </Router>
+      </Page>
     );
   }
 }

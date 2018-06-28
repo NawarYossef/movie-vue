@@ -17,6 +17,7 @@ margin: 0px;
 const SectionTitle = styled.h2`
 font-size: 1.6em;
 display: block;
+color: #D2691E;
 margin-bottom: 10px;
 margin-top: 30px;
 `;
@@ -60,7 +61,7 @@ const TrailerText = styled.span`
   font-size: 1em;
   margin-left: 5px;
 `
-export const Overview = props => {
+export const Synopses = props => {
   return (
     <Description>
       <IconsWrapper>

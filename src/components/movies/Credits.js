@@ -26,6 +26,7 @@ font-size: 1.2em;
 const SectionTitle = styled.h2`
 font-size: 1.6em;
 display: block;
+color: #D2691E;
 margin-bottom: 10px;
 margin-top: 30px;
 `;
@@ -44,7 +45,7 @@ export const Credits = props => {
           {
             movieWriters.map((writer) => {
               return (
-                <CastMember>
+                <CastMember key={writer.id}>
                   <CastName>{writer.name}</CastName>
                   <JobTitle>writer</JobTitle>
                 </CastMember>
@@ -54,7 +55,7 @@ export const Credits = props => {
           {
             movieDirectors.map((director) => {
               return (
-                <CastMember>
+                <CastMember key={director.id}>
                   <CastName>{director.name}</CastName>
                   <JobTitle>Director</JobTitle>
                 </CastMember>

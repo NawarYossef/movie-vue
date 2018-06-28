@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'normalize.css';
 import styled from 'styled-components';
+import { Footer } from "../../containers/landing-page/Footer"
 import MovieModal from './MovieModal';
+import { Rating} from './Rating';
+import { ActorsPhotos } from './ActorsPhotos';
+import { Synopses } from './Synopses';
 import { Credits } from './Credits';
-import { Overview } from './Overview';
 import { MoviePoster } from './MoviePoster';
 import { getTrailerKeyAndShowModal, getMovieCredits, closeModal } from '../../actions/action';
 
 const MainSection = styled.section`
 width: 100%;
+height: 100vh;
 background-color: #051929;
-padding: 50px;
 `
 
 const MovieSection = styled.section`
@@ -23,7 +26,8 @@ flex-direction: row-reverse;
 background-color: #051929;
 border: none;
 width: 90%;
-margin: 110px auto 35px auto;
+padding-top: 130px;
+margin: 0px auto 15px auto;
 color: white;
 `;
 
@@ -66,15 +70,18 @@ export class MovieDetails extends Component {
         <MovieSection>
           <Wrapper>
             <Title>{this.props.movieData.title}</Title>
-            <ReleaseDate>{this.props.movieData.release_date}</ReleaseDate>
+            <ReleaseDate>Release Date: {this.props.movieData.release_date}</ReleaseDate>
 
-            <Overview movieData={this.props.movieData}
+            <Synopses movieData={this.props.movieData}
               getTrailerKeyAndShowModal={this.props.getTrailerKeyAndShowModal} />
 
             <Credits movieCreditsData={this.props.movieCreditsData} />
+            <Rating movieData={this.props.movieData} />
           </Wrapper>
           <MoviePoster imgSrc={`https://image.tmdb.org/t/p/w500${this.props.movieData.poster_path}`} />
         </MovieSection>
+        <ActorsPhotos movieCreditsData={this.props.movieCreditsData} />
+        <Footer />
         <MovieModal
           showModal={this.props.showModal}
           closeModal={this.props.closeModal}
