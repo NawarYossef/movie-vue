@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { getMovies, storeMovieDataAndId, getTrailerKeyAndShowModal, closeModal } from '../actions/action';
+import { getMovies, storeMovieDataAndId, getTrailerKeyAndShowModal, closeModal, increaseCounter } from '../actions/action';
 import { BriefDescription } from '../components/movies/BriefDescription';
+// import { RenderMoreResults } from '../components/movies/RenderMoreResults';
 import MovieModal from '../components/movies/MovieModal';
 import { MOVIES_DATA } from "../constants.js"
 
@@ -64,6 +65,9 @@ class ComingSoon extends Component {
 
   render() {
     const { allMovies } = this.props;
+    console.log('------------------------------------');
+    console.log(this.props.pageCounter);
+    console.log('------------------------------------');
     return (
       <SectionWrapper>
         <MoviesWrapper>
@@ -98,7 +102,8 @@ const mapDispatchToProps = dispatch => ({
   getMovies: (url, pageNumber) => dispatch(getMovies(url, pageNumber)),
   storeMovieDataAndId: (movie, movieId) => dispatch(storeMovieDataAndId(movie, movieId)),
   getTrailerKeyAndShowModal: movieId => dispatch(getTrailerKeyAndShowModal(movieId)),
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModal()),
+  increaseCounter: () => dispatch(increaseCounter())
 });
 
 const mapStateToProps = state => ({

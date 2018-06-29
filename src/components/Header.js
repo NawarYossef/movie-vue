@@ -7,6 +7,7 @@ import AppNav from './AppNav';
 
 const AppHeader = styled.header`
 width: 100%;
+z-index: 1;
 position: fixed;
 top: 0;
 background-color: #081C24;
@@ -37,6 +38,7 @@ margin: 0px;
 color: #ffffff;
 font-size: 2.6em;
 display: inline-block;
+text-decoration: none;
 `;
 
 

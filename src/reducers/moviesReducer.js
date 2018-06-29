@@ -42,6 +42,11 @@ export default function movies(state = initialState, action) {
         ...state,
         showModal: false
       }
+    case actions.INCREASE_COUNTER:
+      return {
+        ...state,
+        pageCounter: state.pageCounter + 1
+      }
     default:
       return state;
   }

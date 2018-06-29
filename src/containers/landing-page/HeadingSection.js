@@ -2,9 +2,18 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Carousel } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
+import MovieImg1 from "../../assets/movie-img1.jpg";
+import MovieImg2 from "../../assets/movie-img2.jpg";
+import MovieImg3 from "../../assets/movie-img3.jpg";
 import "../../styles/main.css"
+
+const Wrapper = styled.div`
+width: 100%;
+height: 400px;  
+`
 
 const Content = styled.ul`
 width: 80%;
@@ -20,48 +29,43 @@ border-radius: 3px;
 list-style-type: none !important;
 `;
 
-const Article = styled.li`
-color: #B8534E;
-display: flex;
-flex: 1;
-flex-direction: column;
-margin-bottom: 0px !important;
-padding: 10px;
+const Image = styled.img`
+max-width: auto !important;
+max-height: 100% !important;
 `
-const Icon = styled.div`
-flex: 1;
-font-size: 3em;
-`;
-
-const Text = styled.p`
-font-size: 0.5em !important;
-`
-const FirstText = styled.p`
-font-size: 1.4em !important;
+const HeadingText = styled.div`
+position: absolute;
+z-index: 1;
+width: 50%;
+margin: 0 auto;
+top: 25%;
+left: 25%;
+right: 25%;
+background-color: #080808a1;
 `
 
+const Text = styled.h2`
+  padding: 30px;
+  color: #ffffff !important;
+`
 export const HeadingSection = () => {
   return (
-    <Content>
-      <Article>
-        <Icon>
-          <FontAwesome name="video" />
-        </Icon>
-        <FirstText>Find your favorite movies</FirstText>
-      </Article>
-      <Article>
-        <Icon>
-          <FontAwesome name="bookmark" />
-          <Text>Save movies to your dashboard</Text>
-        </Icon>
-      </Article>
-      <Article>
-        <Icon>
-          <FontAwesome name="comments" />
-          <Text>Enjoy free membership to our chat community</Text>
-        </Icon>
-      </Article>
-    </Content>
+    <Wrapper>
+      <HeadingText>
+        <Text>Find Your favorite movies</Text>
+      </HeadingText>
+      <Carousel>
+        <Carousel.Item>
+          <Image  src={MovieImg2} />
+        </Carousel.Item>
+        <Carousel.Item>
+          <Image  src={MovieImg3} />
+        </Carousel.Item>
+        <Carousel.Item>
+          <Image  src={MovieImg1} />
+        </Carousel.Item>
+      </Carousel>
+    </Wrapper>
   );
 }
 

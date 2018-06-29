@@ -8,14 +8,34 @@ export const getNewMoviesSuccess = movies => ({
   movies
 });
 
-export const getMovies = (url, pageNumber) => {
+export const getMovies = (url, pageCounter) => {
+  return dispatch => {
+    axios.get(url + pageCounter)
+      .then(res => {
+        return res.data;
+      })
+      .then(data => {
+        dispatch(getNewMoviesSuccess(data));
+      })
+      .catch(err => console.log(err));
+  };
+};
+
+// -------------- Render more movies --------------------
+export const RENDER_MORE_MOVIES_SUCCESS = 'RENDER_MORE_MOVIES_SUCCESS';
+export const renderMoreMoviesSuccess = movies => ({
+  type: RENDER_MORE_MOVIES_SUCCESS,
+  movies
+});
+
+export const RenderMoreMovies = (url) => {
   return dispatch => {
     axios.get(url)
       .then(res => {
         return res.data;
       })
       .then(data => {
-        dispatch(getNewMoviesSuccess(data));
+        dispatch(renderMoreMoviesSuccess(data));
       })
       .catch(err => console.log(err));
   };
@@ -87,5 +107,12 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const closeModal = () => {
   return {
     type: CLOSE_MODAL
+  }
+}
+
+export const INCREASE_COUNTER = 'INCREASE_COUNTER';
+export const increaseCounter = () => {
+  return {
+    type: INCREASE_COUNTER
   }
 }

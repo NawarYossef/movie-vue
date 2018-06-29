@@ -20,6 +20,7 @@ const List = styled.ul`
 
 const ListElement = styled.li`
   margin-bottom: 0px;
+  text-decoration: none;
 `;
 
 const NavLink = styled(Link) `
@@ -31,7 +32,7 @@ const NavLink = styled(Link) `
     color: #d9d9d9;
     text-decoration: none;
   }
-  &:visited {
+  &:visited, &:active {
     color: #d9d9d9;
     text-decoration: none;
   }

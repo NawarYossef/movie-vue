@@ -3,17 +3,16 @@ import 'normalize.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Footer } from "./Footer"
+import { Main } from "./Main"
 import { HeadingSection } from './HeadingSection';
-import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
 import "../../styles/main.css"
 
-const Main = styled.main`
-background-image: url("../../assets/landing-page-img.jpg");
+const Wrapper = styled.div`
+position: relative;
 width: 100%;
-height: 100vh;
-margin: 0px;
-padding-top: 100px;
+height: 100%;
+background-color: #081C24;
 `
 export class LandingPage extends Component {
 
@@ -27,10 +26,11 @@ export class LandingPage extends Component {
 
   render() {
     return (
-      <Main className={"background"}>
+      <Wrapper>
         <HeadingSection />
+        <Main />
         <Footer />
-      </Main>
+      </Wrapper>
     );
   };
 };

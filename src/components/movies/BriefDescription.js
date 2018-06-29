@@ -1,5 +1,7 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
@@ -23,12 +25,13 @@ transition: box-shadow 1s;
 
 const Wrapper = styled.div`
 margin: 0 auto;
+position: relative;
 padding: 10px 0px;
 width: 63%;
 `;
 const Title = styled.h3`
 font-size: 1.5em;
-margin-bottom: 0px;
+margin: 0px auto 0px auto !important;
 color: #ffffff;
 `;
 const ReleaseDate = styled.h6`
@@ -41,15 +44,13 @@ const Description = styled.div`
 font-size: 0.9em;
 text-align: left;
 line-height: 130%;
-padding: 10px;
 color: #e1e1e1;
 `;
 
 const Text = styled.p`
-height: 130px;
 margin: 0px;
 font-size: 1.1em;
-margin-bottom: 10px;
+padding: 10px;
 `;
 const ReadMoreLink = styled(Link)`
 display: block;
@@ -68,10 +69,14 @@ height: 100%;
 
 const IconsWrapper = styled.div`
 font-size: 0.9em;
-width: 100%;
+width: 80%;
 display: flex;
 justify-content: space-around;
-margin: 0 auto;
+margin: auto;
+position: absolute;
+left: 0;
+right: 0;
+bottom: 5%;
 `;
 const Icon = styled.div`
 font-size: 1.4em;
@@ -89,6 +94,11 @@ transition: background-color 1s;
 `;
 
 export const BriefDescription = props => {
+  const tooltip = (
+    <Tooltip id="tooltip">
+      <strong>Feature coming soon</strong>
+    </Tooltip>
+  );
   const { movie } = props
   return (
     <MovieSection>
@@ -102,24 +112,34 @@ export const BriefDescription = props => {
               <ReadMoreLink to='/movies/movie-details' onClick={() => props.storeMovieDataAndId(movie, movie.id)}>Read more...</ReadMoreLink>
             </span>
           </Text>
+
           <IconsWrapper >
-            <Icon thumbsDown>
-              <FontAwesome name="thumbs-down" />
-            </Icon>
-            <Icon>
-              <FontAwesome name="thumbs-up" />
-            </Icon>
-            <Icon>
-              <FontAwesome name="star" />
-            </Icon>
-            <Icon 
-            bsStyle="primary" bsSize="large" onClick={() => props.getTrailerKeyAndShowModal(movie.id)}>
-              <FontAwesome name="play" />
-            </Icon>
+            <OverlayTrigger placement="top" overlay={tooltip}>
+              <Icon thumbsDown>
+                <FontAwesome name="thumbs-down" />
+              </Icon>
+            </OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip}>
+              <Icon>
+                <FontAwesome name="thumbs-up" />
+              </Icon>
+            </OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip}>
+              <Icon>
+                <FontAwesome name="star" />
+              </Icon>
+            </OverlayTrigger>
+            <OverlayTrigger placement="top" overlay={tooltip}>
+              <Icon
+                bsStyle="primary" bsSize="large" onClick={() => props.getTrailerKeyAndShowModal(movie.id)}>
+                <FontAwesome name="play" />
+              </Icon>
+            </OverlayTrigger>
           </IconsWrapper>
+
         </Description>
       </Wrapper>
       <Img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="img" />
-    </MovieSection>
+    </MovieSection >
   );
 }
