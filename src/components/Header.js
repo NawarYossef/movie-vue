@@ -4,6 +4,7 @@ import PopcornImage from '../assets/cinema-icon.png'
 import 'normalize.css';
 import styled from 'styled-components';
 import AppNav from './AppNav';
+import Title from './Title';
 
 const AppHeader = styled.header`
 width: 100%;
@@ -47,10 +48,7 @@ export default function Header() {
     return (
       <AppHeader>
         <HeaderWrapper>
-          <WrapperForAppTitle to={"/"}>
-            <AppTitle>MovieVue</AppTitle>
-          <img src={PopcornImage} className={'headerImage'} alt=""/>
-          </WrapperForAppTitle>
+          <Title />
           <AppNav/>
         </HeaderWrapper>
       </AppHeader>
