@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'normalize.css';
 import styled from 'styled-components';
 import LandingPage from './landing-page/LandingPage';
-import Header from '../components/Header';
+import Header from './Header';
 import MovieDetails from '../components/movies/MovieDetails';
 import Movies from './Movies';
 import Dashboard from './Dashboard';

@@ -8,22 +8,32 @@ import "../../styles/main.css"
 
 const MainSection = styled.main`
 width: 100%;
-padding-top: 450px;
-padding-bottom: 230px;
+padding-top: 200px;
 `
 
 const Content = styled.ul`
 width: 80%;
-padding: 50px 0px;
+position: absolute;
+top: 35%;
+left: 10%;
+padding: 0px 0px;
 background-color: #eeeeeee6;
 padding: 0px;
-margin: 0px auto 0 auto;
+margin: 0px auto 0px auto;
 list-style: none;
 display: flex;
 flex-wrap: wrap;  
 align-items: flex-start;
 border-radius: 3px;
 list-style-type: none !important;
+@media (min-width: 320px) {
+  flex-direction: column;
+  top: 20%;
+}
+@media (min-width: 768px) {
+  flex-direction: row;
+  top: 35%;
+}
 `;
 
 const Article = styled.li`
@@ -33,6 +43,13 @@ flex: 1;
 flex-direction: column;
 margin-bottom: 0px !important;
 padding: 80px;
+@media (min-width: 320px) {
+  padding: 40px;
+  margin: 0 auto;
+}
+@media (min-width: 850px) {
+  padding: 80px;
+}
 `
 const Icon = styled.div`
 flex: 1;

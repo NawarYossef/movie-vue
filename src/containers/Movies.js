@@ -66,7 +66,7 @@ class ComingSoon extends Component {
   render() {
     const { allMovies } = this.props;
     console.log('------------------------------------');
-    console.log(this.props.pageCounter);
+    console.log(MOVIES_DATA.popular.apiUrl);
     console.log('------------------------------------');
     return (
       <SectionWrapper>

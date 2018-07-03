@@ -4,14 +4,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Footer } from "./Footer"
 import { Main } from "./Main"
-import { HeadingSection } from './HeadingSection';
 import styled from 'styled-components';
 import "../../styles/main.css"
 
 const Wrapper = styled.div`
-position: relative;
 width: 100%;
-height: 100%;
+height: 100vh;
 background-color: #081C24;
 `
 export class LandingPage extends Component {
@@ -26,8 +24,7 @@ export class LandingPage extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <HeadingSection />
+      <Wrapper className={"background"}>
         <Main />
         <Footer />
       </Wrapper>

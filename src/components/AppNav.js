@@ -16,6 +16,9 @@ const List = styled.ul`
   justify-content: flex-end;
   list-style-type: none;
   margin-bottom: 0px;
+  @media (min-width: 320px) {
+    padding-left: 0px;
+  }
 `;
 
 const ListElement = styled.li`
@@ -35,6 +38,12 @@ const NavLink = styled(Link) `
   &:visited, &:active {
     color: #d9d9d9;
     text-decoration: none;
+  }
+  @media (min-width: 320px) {
+    font-size: 1em !important;
+  }
+  @media (min-width: 425px) {
+    font-size: 1.3em !important;
   }
 `;
 
@@ -68,10 +77,16 @@ margin-bottom: 0px;
   color: #d9d9d9;
   text-decoration: none;
 }
+@media (min-width: 320px) {
+  font-size: 1em !important;
+}
+@media (min-width: 425px) {
+  font-size: 1.3em !important;
+}
+
 `;
 
 export default function AppNav() {
-
   const links = [
     <DropDownLink className={"dropDownMenu"}>Movies<Icon><FontAwesome name={"fa fa-caret-down"} size="lg" /></Icon>
       <ul className={"dropDownList"}>
