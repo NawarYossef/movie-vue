@@ -32,6 +32,26 @@ width: 60%;
 display: flex;
 justify-content: space-around;
 margin: 0 auto;
+@media (min-width: 320px) {
+  flex-direction: column;
+  width: 25%;
+}
+@media (min-width: 350px) {
+  flex-direction: column;
+  width: 23%;
+}
+@media (min-width: 375px) {
+  flex-direction: column;
+  width: 20%;
+}
+@media (min-width: 400px) {
+  flex-direction: column;
+  width: 18%;
+}
+@media (min-width: 425px) {
+  flex-direction: row;
+  width: 100%;
+}
 `;
 const Icon = styled.div`
 font-size: 1.4em;
@@ -45,6 +65,12 @@ transition: background-color 1s;
   color: #000000;
   cursor: pointer;
 }
+@media (min-width: 320px) and (max-width: 424px) {
+  margin-bottom: 7px;
+}
+@media (min-width: 425px) {
+  margin-right: 7px;
+}
 `;
 
 const PlayTrailerIcon = styled.div`
@@ -55,6 +81,13 @@ padding-top: ${props => props.thumbsDown ? '15px' : '15px'};
 padding-left: 0px;
 &:hover {
 cursor: pointer;
+}
+@media (min-width: 320px) and (max-width: 424px) {
+  text-align: center;
+  padding-left: 15px;
+}
+@media (min-width: 325px){
+  padding: 15px 0px;
 }
 `;
 const TrailerText = styled.span`

@@ -8,16 +8,21 @@ import MovieDetails from '../components/movies/MovieDetails';
 import Movies from './Movies';
 import Dashboard from './Dashboard';
 import Community from './Community';
+import {Footer} from './landing-page/Footer';
 
 const PageWrapper = styled.div`
 text-align: center;
 margin: 0 auto;
-position: relative;
 box-sizing: border-box;
+height: 100%;
+width: 100%;
+overflow:auto;
+background-color: #051929;
 `;
 
 const Page = styled(Router)`
-height: 100vh;
+height: 100%;
+width: 100%;
 background-color: #051929;
 `
 
@@ -44,6 +49,7 @@ class App extends Component {
           <Route exact path="/movies/popular" component={Movies} />
           <Route exact path="/movies/coming-soon" component={Movies} />
           <Route exact path="/movies/movie-details" component={MovieDetails} />
+          <Footer />
         </PageWrapper>
       </Page>
     );

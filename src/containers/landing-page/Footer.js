@@ -3,15 +3,11 @@ import 'normalize.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
 
 const Wrapper = styled.footer`
-position: relative;
+position: absolute;
 background-color: #081C24;
-bottom: 0;
-left: 0;
-right: 0;
 width: 100%;
 padding: 2%;
 border-top: 1px solid #D2691E;
@@ -19,7 +15,7 @@ border-top: 1px solid #D2691E;
   padding: 4%;
 }
 @media (min-width: 768px) {
-  padding: 2%;
+  padding: 1%;
 }
 `
 

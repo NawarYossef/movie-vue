@@ -13,6 +13,16 @@ margin-top: 30px;
 text-align: left;
 width: 50%;
 justify-content: space-between;
+@media (min-width: 320px) and (max-width: 767px) {
+  width: 100%;
+  padding-left: 0px;
+}
+@media (min-width: 768px){
+  width: 80%;
+}
+@media (min-width: 1024px){
+  width: 50%;
+}
 `
 
 const SingleRating = styled.li`
@@ -22,18 +32,21 @@ height: 30px;
 display: flex;
 align-items: center;
 justify-content: center;
+
 `
 const ImdbRating = styled.li`
 display: inline-block;
 width:  30px;
-height: 20px;
+height: 35px;
 display: flex;
 align-items: center;
 justify-content: center;
+
 `
 const RatingImg = styled.img`
 width: 100%;
 margin-right: 5px;
+margin: 0 auto;
 `;
 
 const Score = styled.h5`
@@ -76,8 +89,11 @@ export class Rating extends Component {
           ]
         })
       })
+      .catch(function (err) {
+        console.log(err);
+      })
   }
-  render() {
+  render() {  
     if (this.state.allRatings.length) {
       return (
         <RatingsWrapper>

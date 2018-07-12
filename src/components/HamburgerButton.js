@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/hamburger.css";
 
 export default function HamburgerButton(props) {
   return (

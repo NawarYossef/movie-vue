@@ -13,13 +13,13 @@ import { getTrailerKeyAndShowModal, getMovieCredits, closeModal } from '../../ac
 
 const MainSection = styled.section`
 width: 100%;
-height: 100vh;
+height: 100%;
 background-color: #051929;
 `
 
 const MovieSection = styled.section`
 display: flex;
-flex: 0 0 30%;
+flex: auto;
 justify-content: center;
 padding: 20px;
 flex-direction: row-reverse; 
@@ -29,6 +29,13 @@ width: 90%;
 padding-top: 130px;
 margin: 0px auto 15px auto;
 color: white;
+@media (min-width: 320px) {
+  flex-direction: column-reverse;
+  margin-top: 50px;
+}
+@media (min-width: 768px) {
+  flex-direction: row-reverse;
+}
 `;
 
 const Wrapper = styled.div`
@@ -36,6 +43,7 @@ margin: 0 auto;
 flex: 2 1 auto;
 display: inline-block;
 width: 100%;  
+
 `;
 
 const Title = styled.h3`
@@ -61,6 +69,7 @@ export class MovieDetails extends Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundImage = "none";
     this.props.getMovieCredits(this.props.movieId)
   }
 

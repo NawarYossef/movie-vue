@@ -8,14 +8,13 @@ import "../../styles/main.css"
 
 const MainSection = styled.main`
 width: 100%;
-padding-top: 200px;
+height: 100%;
+padding-bottom: 100px;
+padding-top: 220px;
 `
 
 const Content = styled.ul`
 width: 80%;
-position: absolute;
-top: 35%;
-left: 10%;
 padding: 0px 0px;
 background-color: #eeeeeee6;
 padding: 0px;

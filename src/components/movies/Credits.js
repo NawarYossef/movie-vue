@@ -5,6 +5,12 @@ import styled from 'styled-components';
 const CreditsWrapper = styled.div`
 display: flex;
 justify-content: start;
+@media (min-width: 320px) {
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  flex-direction: row;
+}
 `
 const AllCredits = styled.div`
 text-align: left;

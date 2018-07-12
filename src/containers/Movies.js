@@ -14,11 +14,25 @@ import { MOVIES_DATA } from "../constants.js"
 const TitleWrapper = styled.div`
 width:  100%;
 text-align: left;
+@media (min-width: 320px) {
+  width: 70%;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  width: 70%;
+  margin: 0 auto;
+}
+@media (min-width: 1024px) {
+  width: 100%;
+}
 `;
 
 const SectionTitle = styled.h2`
 color: #ffffff;
 font-size: 1.4em;
+@media (min-width: 1024px) {
+  margin-left: 10px;
+}
 `;
 
 const SectionWrapper = styled.section`
@@ -26,6 +40,12 @@ background-color: #051929;
 width: 100%;
 margin: 0px;
 padding-top: 100px;
+@media (min-width: 320px) {
+  padding-top: 300px;
+}
+@media (min-width: 768px) {
+  padding-top: 100px; 
+}
 `
 const MoviesWrapper = styled.ul`
 width: 80%;
@@ -36,6 +56,14 @@ display: flex;
 flex-wrap: wrap;  
 align-items: flex-start;
 justify-content: space-between;
+@media (min-width: 320px) {
+  width: 90%;
+  justify-content: space-around;
+}
+@media (min-width: 768px) {
+  width: 90%;
+  justify-content: space-between;
+}
 `;
 
 class ComingSoon extends Component {
