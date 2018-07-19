@@ -6,22 +6,20 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.footer`
-position: absolute;
+position: relative;
 background-color: #081C24;
 width: 100%;
 padding: 2%;
 border-top: 1px solid #D2691E;
 @media (min-width: 320px) {
-  padding: 4%;
-}
-@media (min-width: 768px) {
-  padding: 1%;
+  padding: 2%;
 }
 `
 
 const NavMenu = styled.ul`
 width: 60%;
 margin: 0 auto;
+padding: 0px !important;
 list-style: none;
 display: flex;
 flex-wrap: wrap;  

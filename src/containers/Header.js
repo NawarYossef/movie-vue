@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import '../styles/main.css';
 import AppNav from '../components/AppNav';
 import Title from '../components/Title';
-import HamburgerButton from "../components/HamburgerButton";
 
 const AppHeader = styled.header`
 width: 100%;
@@ -64,31 +63,7 @@ text-decoration: none;
 
 
 export default class Header extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      hamburgerState: "not-active",
-      visible: false
-    }
-  }
-
-  handleSidebarHide = () => this.setState({ visible: false })
-
-  handleButtonClick = () => {
-    this.state.hamburgerState === "not-active" ?
-      this.setState({
-        hamburgerState: "is-active",
-        visible: !this.state.visible
-      }) :
-      this.setState({
-        hamburgerState: "not-active",
-        visible: !this.state.visible
-      })
-  }
   render() {
-    const { visible } = this.state
-
     return (
       <AppHeader>
         <HeaderWrapper>
@@ -99,4 +74,3 @@ export default class Header extends Component {
     );
   }
 }
-    // <HamburgerButton hamburgerState={this.state.hamburgerState} onClick={this.handleHamburgerClick} />

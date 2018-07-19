@@ -90,7 +90,6 @@ export class MovieDetails extends Component {
           <MoviePoster imgSrc={`https://image.tmdb.org/t/p/w500${this.props.movieData.poster_path}`} />
         </MovieSection>
         <ActorsPhotos movieCreditsData={this.props.movieCreditsData} />
-        <Footer />
         <MovieModal
           showModal={this.props.showModal}
           closeModal={this.props.closeModal}

@@ -85,6 +85,7 @@ display: block;
 margin-top: 5px;
 font-size: 0.9em;
 color: #0ac70a;
+width: 50%;
 &:hover {
   cursor: pointer;
   text-decoration: none;
@@ -171,7 +172,7 @@ export const BriefDescription = props => {
             </OverlayTrigger>
             <OverlayTrigger placement="top" overlay={tooltip}>
               <Icon>
-                <FontAwesome name="star" />
+                <FontAwesome name="bookmark" />
               </Icon>
             </OverlayTrigger>
             <OverlayTrigger placement="top" overlay={trailerToolTip}>

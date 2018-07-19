@@ -13,6 +13,9 @@ position: relative;
 `
 export class LandingPage extends Component {
 
+  componentDidMount = () => {
+    document.body.style.backgroundColor = "url('../../assets/landing-page-img.jpg')";
+  }
   render() {
     return (
       <Wrapper>

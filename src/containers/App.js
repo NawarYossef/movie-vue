@@ -8,7 +8,7 @@ import MovieDetails from '../components/movies/MovieDetails';
 import Movies from './Movies';
 import Dashboard from './Dashboard';
 import Community from './Community';
-import {Footer} from './landing-page/Footer';
+import { Footer } from './landing-page/Footer';
 
 const PageWrapper = styled.div`
 text-align: center;
@@ -17,7 +17,6 @@ box-sizing: border-box;
 height: 100%;
 width: 100%;
 overflow:auto;
-background-color: #051929;
 `;
 
 const Page = styled(Router)`
@@ -28,7 +27,7 @@ background-color: #051929;
 
 class App extends Component {
   componentDidMount = () => {
-    window.addEventListener('scroll', this.handleHeaderBoxShadow);
+    window.addEventListener('scroll', this.handleHeaderBoxShadow, true);
   }
 
   handleHeaderBoxShadow() {

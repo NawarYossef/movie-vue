@@ -9,6 +9,7 @@ import { BriefDescription } from '../components/movies/BriefDescription';
 // import { RenderMoreResults } from '../components/movies/RenderMoreResults';
 import MovieModal from '../components/movies/MovieModal';
 import { MOVIES_DATA } from "../constants.js"
+import '../styles/main.css';
 
 
 const TitleWrapper = styled.div`
@@ -39,7 +40,7 @@ const SectionWrapper = styled.section`
 background-color: #051929;
 width: 100%;
 margin: 0px;
-padding-top: 100px;
+padding: 100px 0px;
 @media (min-width: 320px) {
   padding-top: 300px;
 }
@@ -93,9 +94,7 @@ class ComingSoon extends Component {
 
   render() {
     const { allMovies } = this.props;
-    console.log('------------------------------------');
-    console.log(MOVIES_DATA.popular.apiUrl);
-    console.log('------------------------------------');
+
     return (
       <SectionWrapper>
         <MoviesWrapper>

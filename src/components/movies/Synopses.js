@@ -1,4 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
@@ -95,23 +97,40 @@ const TrailerText = styled.span`
   margin-left: 5px;
 `
 export const Synopses = props => {
+  const tooltip = (
+    <Tooltip id="tooltip">
+      <strong>Feature coming soon</strong>
+    </Tooltip>
+  );
+  const trailerToolTip = (
+    <Tooltip id="tooltip">
+      <strong>Movie Trailer</strong>
+    </Tooltip>
+  );
+
   return (
     <Description>
       <IconsWrapper>
-        <Icon thumbsDown>
-          <FontAwesome name="thumbs-down" />
-        </Icon>
-        <Icon>
-          <FontAwesome name="thumbs-up" />
-        </Icon>
-        <Icon>
-          <FontAwesome name="star" />
-        </Icon>
-        <PlayTrailerIcon
-          bsStyle="primary" bsSize="large" onClick={() => props.getTrailerKeyAndShowModal(props.movieData.id)}>
-          <FontAwesome name="play" />
-          <TrailerText>Play Trailer</TrailerText>
-        </PlayTrailerIcon>
+        <OverlayTrigger placement="top" overlay={tooltip}>
+          <Icon thumbsDown>
+            <FontAwesome name="thumbs-down" />
+          </Icon>
+        </OverlayTrigger>
+        <OverlayTrigger placement="top" overlay={tooltip}>
+          <Icon>
+            <FontAwesome name="thumbs-up" />
+          </Icon>
+        </OverlayTrigger>
+        <OverlayTrigger placement="top" overlay={tooltip}>
+          <Icon>
+            <FontAwesome name="bookmark" />
+          </Icon>
+        </OverlayTrigger>
+          <PlayTrailerIcon
+            bsStyle="primary" bsSize="large" onClick={() => props.getTrailerKeyAndShowModal(props.movieData.id)}>
+            <FontAwesome name="play" />
+            <TrailerText>Play Trailer</TrailerText>
+          </PlayTrailerIcon>
       </IconsWrapper>
       <TextWrapper>
         <SectionTitle>Overview</SectionTitle>

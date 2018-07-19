@@ -9,8 +9,6 @@ import "../../styles/main.css"
 const MainSection = styled.main`
 width: 100%;
 height: 100%;
-padding-bottom: 100px;
-padding-top: 220px;
 `
 
 const Content = styled.ul`
@@ -27,11 +25,11 @@ border-radius: 3px;
 list-style-type: none !important;
 @media (min-width: 320px) {
   flex-direction: column;
-  top: 20%;
+  margin: 200px auto 250px auto;
 }
 @media (min-width: 768px) {
   flex-direction: row;
-  top: 35%;
+  margin: 200px auto 20px auto;
 }
 `;
 
