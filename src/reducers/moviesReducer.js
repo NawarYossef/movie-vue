@@ -1,4 +1,5 @@
 import * as actions from '../actions/action';
+import * as apiActions from '../actions/api';
 
 const initialState = {
   allMovies: {},

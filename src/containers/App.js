@@ -28,7 +28,10 @@ background-color: #051929;
 
 class App extends Component {
   componentDidMount = () => {
-    fetch(`${API_BASE_URL}`)
+    console.log('------------------------------------');
+    console.log(API_BASE_URL);
+    console.log('------------------------------------');
+    fetch(`${API_BASE_URL}/api`)
     .then(res => console.log(res))
     .catch(err => console.log(err))
     window.addEventListener('scroll', this.handleHeaderBoxShadow, true);

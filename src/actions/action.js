@@ -110,6 +110,8 @@ export const closeModal = () => {
   }
 }
 
+
+// -------------- increase counter --------------------
 export const INCREASE_COUNTER = 'INCREASE_COUNTER';
 export const increaseCounter = () => {
   return {
