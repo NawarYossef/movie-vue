@@ -36,7 +36,7 @@ class App extends Component {
     console.log('------------------------------------');
     axios.get(`${API_BASE_URL}/api/movies`)
       .then(res => this.props.storeBookmarkCount(res.data.length))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.response))
     window.addEventListener('scroll', this.handleHeaderBoxShadow, true);
   }
 
