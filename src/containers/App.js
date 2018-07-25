@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'normalize.css';
 import styled from 'styled-components';
@@ -9,6 +10,8 @@ import Movies from './Movies';
 import Dashboard from './Dashboard';
 import Community from './Community';
 import { Footer } from './landing-page/Footer';
+import { storeBookmarkCount } from '../actions/server';
+import axios from "axios";
 import { API_BASE_URL } from '../config';
 
 const PageWrapper = styled.div`
@@ -28,12 +31,9 @@ background-color: #051929;
 
 class App extends Component {
   componentDidMount = () => {
-    console.log('------------------------------------');
-    console.log(API_BASE_URL);
-    console.log('------------------------------------');
-    fetch(`${API_BASE_URL}/api`)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+    axios.get(`${API_BASE_URL}/api/movies`)
+      .then(res => this.props.storeBookmarkCount(res.data.length))
+      .catch(err => console.log(err))
     window.addEventListener('scroll', this.handleHeaderBoxShadow, true);
   }
 
@@ -62,4 +62,13 @@ class App extends Component {
   }
 }
 
-export default App; 
+const mapDispatchToProps = dispatch => ({
+  storeBookmarkCount: count => dispatch(storeBookmarkCount(count))
+});
+
+const mapStateToProps = state => ({
+  bookmarkCount: state.movies.bookmarkCount
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+

@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'normalize.css';
 import styled from 'styled-components';
-import { Footer } from "../../containers/landing-page/Footer"
 import MovieModal from './MovieModal';
 import { Rating} from './Rating';
 import { ActorsPhotos } from './ActorsPhotos';
 import { Synopses } from './Synopses';
 import { Credits } from './Credits';
 import { MoviePoster } from './MoviePoster';
-import { getTrailerKeyAndShowModal, getMovieCredits, closeModal } from '../../actions/action';
+import { getTrailerKeyAndShowModal, getMovieCredits, closeModal } from '../../actions/api';
 
 const MainSection = styled.section`
 width: 100%;

@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { getMovies, storeMovieDataAndId, getTrailerKeyAndShowModal, closeModal, increaseCounter } from '../actions/action';
+import { getMovies, storeMovieDataAndId, getTrailerKeyAndShowModal, closeModal, increaseCounter } from '../actions/api';
+import { storeMovieDataAndUpdateBookmarkCount, deleteBookmarkedMovie } from '../actions/server';
 import { BriefDescription } from '../components/movies/BriefDescription';
 // import { RenderMoreResults } from '../components/movies/RenderMoreResults';
 import MovieModal from '../components/movies/MovieModal';
@@ -18,10 +19,12 @@ text-align: left;
 @media (min-width: 320px) {
   width: 70%;
   margin: 0 auto;
+  text-align: center;
 }
 @media (min-width: 768px) {
   width: 70%;
   margin: 0 auto;
+  text-align: initial;
 }
 @media (min-width: 1024px) {
   width: 100%;
@@ -67,7 +70,7 @@ justify-content: space-between;
 }
 `;
 
-class ComingSoon extends Component {
+class Movies extends Component {
   componentDidMount = () => {
     if (this.props.location.pathname === MOVIES_DATA.popular.route) {
       this.props.getMovies(MOVIES_DATA.popular.apiUrl, this.props.pageCounter);
@@ -104,10 +107,12 @@ class ComingSoon extends Component {
           {Object.keys(allMovies).length > 0 && allMovies.results.map((movie) => {
             return (
               <BriefDescription
+                bookmarked={false}
                 key={movie.id}
                 movie={movie}
                 showBriefDescription={this.showBriefDescription(movie.overview)}
                 getTrailerKeyAndShowModal={this.props.getTrailerKeyAndShowModal}
+                storeMovieDataAndUpdateBookmarkCount={this.props.storeMovieDataAndUpdateBookmarkCount}
                 storeMovieDataAndId={this.props.storeMovieDataAndId}
               />
             );
@@ -129,6 +134,7 @@ const mapDispatchToProps = dispatch => ({
   getMovies: (url, pageNumber) => dispatch(getMovies(url, pageNumber)),
   storeMovieDataAndId: (movie, movieId) => dispatch(storeMovieDataAndId(movie, movieId)),
   getTrailerKeyAndShowModal: movieId => dispatch(getTrailerKeyAndShowModal(movieId)),
+  storeMovieDataAndUpdateBookmarkCount: movieId => dispatch(storeMovieDataAndUpdateBookmarkCount(movieId)),
   closeModal: () => dispatch(closeModal()),
   increaseCounter: () => dispatch(increaseCounter())
 });
@@ -141,9 +147,5 @@ const mapStateToProps = state => ({
   pageCounter: state.movies.pageCounter
 });
 
-ComingSoon.propTypes = {
-  getMovies: PropTypes.func.isRequired,
-  allMovies: PropTypes.object
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ComingSoon);
+export default connect(mapStateToProps, mapDispatchToProps)(Movies);

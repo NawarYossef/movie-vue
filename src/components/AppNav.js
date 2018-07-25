@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
@@ -26,7 +27,7 @@ const ListElement = styled.li`
   text-decoration: none;
 `;
 
-const NavLink = styled(Link) `
+const NavLink = styled(Link)`
   color: #ffffff;
   font-size: 1.3em !important;
   display: block;
@@ -60,6 +61,31 @@ min-width: 160px;
 box-shadow: 0;
 `;
 
+let Count = styled.span`
+width: 25px;
+height: 25px;
+line-height: 25px;
+position: absolute;
+border-radius: 50%;
+-moz-border-radius: 50%;
+-webkit-border-radius: 50%;
+top: 0%;
+right: 18%;
+background-color: #D2691E;
+color: #ffffff;
+@media (min-width: 320px) and (max-width: 425px) {
+  font-size: 1em !important;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  right: 20%;
+}
+`;
+
+const DashboardWrapper = styled.ul`
+position: relative;
+`
+
 const DropDownLink = styled.nav`
 color: #ffffff;
 font-size: 1.3em !important;
@@ -79,6 +105,7 @@ margin-bottom: 0px;
 }
 @media (min-width: 320px) {
   font-size: 1em !important;
+  margin-right: 0px;
 }
 @media (min-width: 425px) {
   font-size: 1.3em !important;
@@ -86,16 +113,19 @@ margin-bottom: 0px;
 
 `;
 
-export default function AppNav() {
+const AppNav = props => {
   const links = [
     <DropDownLink className={"dropDownMenu"}>Movies<Icon><FontAwesome name={"fa fa-caret-down"} size="lg" /></Icon>
       <ul className={"dropDownList"}>
-      <li><Link to="/movies/coming-soon">Coming Soon</Link></li>
-      <li><Link to="/movies/now-playing">Now Playing</Link></li>
-      <li><Link to="/movies/popular">Popular</Link></li>
+        <li><Link to="/movies/coming-soon">Coming Soon</Link></li>
+        <li><Link to="/movies/now-playing">Now Playing</Link></li>
+        <li><Link to="/movies/popular">Popular</Link></li>
       </ul>
     </DropDownLink>,
-    <NavLink to="/dashboard">Dashboard</NavLink>,
+    <DashboardWrapper>
+      <NavLink to="/dashboard">Dashboard</NavLink>
+      {props.bookmarkCount > 0 && <Count>{props.bookmarkCount}</Count>}
+    </DashboardWrapper>,
     <NavLink lastbtn="true" to="/community">Community</NavLink>
   ];
 
@@ -113,3 +143,11 @@ export default function AppNav() {
     </NavBar>
   );
 }
+
+const mapStateToProps = state => ({
+  bookmarkCount: state.movies.bookmarkCount
+});
+
+export default connect(mapStateToProps, null)(AppNav);
+
+

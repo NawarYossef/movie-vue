@@ -88,7 +88,7 @@ const findOfficialTrailer = (videosDataArray) => {
   return officialTrailers.length ? officialTrailers[0].key : '';
 }
 
-export const getTrailerKeyAndShowModal = (movieId) => {
+export const getTrailerKeyAndShowModal = movieId => {
   return dispatch => {
     const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`
     axios.get(movieUrl)
@@ -109,7 +109,6 @@ export const closeModal = () => {
     type: CLOSE_MODAL
   }
 }
-
 
 // -------------- increase counter --------------------
 export const INCREASE_COUNTER = 'INCREASE_COUNTER';

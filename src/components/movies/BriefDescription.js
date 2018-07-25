@@ -2,8 +2,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Icons } from "./Icons.js";
 import 'normalize.css';
-import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
 
 const MovieSection = styled.li`
@@ -145,7 +145,7 @@ export const BriefDescription = props => {
       <strong>Movie Trailer</strong>
     </Tooltip>
   );
-  const { movie } = props
+  const { movie } = props;
   return (
     <MovieSection>
       <Wrapper>
@@ -158,31 +158,13 @@ export const BriefDescription = props => {
               <ReadMoreLink to='/movies/movie-details' onClick={() => props.storeMovieDataAndId(movie, movie.id)}>Read more...</ReadMoreLink>
             </span>
           </Text>
-
-          <IconsWrapper >
-            <OverlayTrigger placement="top" overlay={tooltip}>
-              <Icon thumbsDown>
-                <FontAwesome name="thumbs-down" />
-              </Icon>
-            </OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip}>
-              <Icon>
-                <FontAwesome name="thumbs-up" />
-              </Icon>
-            </OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={tooltip}>
-              <Icon>
-                <FontAwesome name="bookmark" />
-              </Icon>
-            </OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={trailerToolTip}>
-              <Icon
-                bsStyle="primary" bsSize="large" onClick={() => props.getTrailerKeyAndShowModal(movie.id)}>
-                <FontAwesome name="play" />
-              </Icon>
-            </OverlayTrigger>
-          </IconsWrapper>
-
+          <Icons
+            bookmarked={props.bookmarked}
+            referenceId={props.referenceId} 
+            getTrailerKeyAndShowModal={props.getTrailerKeyAndShowModal} 
+            storeMovieDataAndUpdateBookmarkCount={props.storeMovieDataAndUpdateBookmarkCount}
+            deleteBookmarkedMovie={props.deleteBookmarkedMovie}
+            movie={movie} />
         </Description>
       </Wrapper>
       <Image src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt="img" />
