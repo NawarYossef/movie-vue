@@ -9,6 +9,8 @@ import MovieDetails from '../components/movies/MovieDetails';
 import Movies from './Movies';
 import Dashboard from './Dashboard';
 import Community from './Community';
+import LogIn from "./registration/LogIn"
+import SignUp from "./registration/SignUp"
 import { Footer } from './landing-page/Footer';
 import { storeBookmarkCount } from '../actions/server';
 import axios from "axios";
@@ -51,6 +53,9 @@ class App extends Component {
       <Page>
         <PageWrapper>
           <Header />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={LogIn} />
+
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/Community" component={Community} />

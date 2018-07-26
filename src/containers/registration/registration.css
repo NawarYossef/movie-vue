@@ -1,0 +1,21 @@
+.registration-form-wrapper {
+	width: 50%;
+	margin: 150px auto 0 auto;
+}
+
+.registration-form-wrapper label, .registration-form-wrapper label {
+	margin-bottom: 5px;
+}
+
+.form-group {
+	text-align: left;
+}
+
+label {
+  color: #ffffff;
+}
+
+button {
+  float: left;
+}
+

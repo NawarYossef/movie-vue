@@ -71,6 +71,12 @@ export const deleteBookmarkedMovie = movieId => {
       .catch(err => console.log(err));
   };
 };
-// delete endpoint
-// rating endpoint
-//  chat
+
+//  Auth
+//  rating endpoint
+//  allow users to bookmark from movie details page
+//  if movie is bookmarked:
+  //  when user going to movie details page, they should see trash icon instead of bookmark
+  //  don't allow for movies to be added twice (show message for that)
+// design :
+  // fix bookmark circle
