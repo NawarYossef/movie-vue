@@ -24,6 +24,9 @@ export const storeMovieDataSuccess = moviesData => ({
 export const storeMovieDataAndUpdateBookmarkCount = movieId => {
   return dispatch => {
     const movieUrl = `http://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}`;
+    console.log('------------------------------------');
+    console.log(movieId, movieUrl);
+    console.log('------------------------------------');
     axios.get(movieUrl)
 
       .then(res => {
