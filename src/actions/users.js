@@ -73,7 +73,7 @@ export const userLogin = data => dispatch => {
       return res.json();
     })
     .then(payload => {
-      history.push('');
+      history.push('/movies/now-playing');
       setSessionToken(payload.token);
     })
     .then(() => {
