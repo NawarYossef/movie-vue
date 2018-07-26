@@ -1,9 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-// import { createNewUser } from "../../actions/user";
+import { userLogin } from "../../actions/users";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./registration.css";
 

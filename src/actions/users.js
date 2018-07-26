@@ -1,6 +1,5 @@
 import { API_BASE_URL } from "../config";
 import history from '../history'
-import axios from 'axios';
 import store from '../store';
 
 export const SET_TOKEN = 'SET_TOKEN';
