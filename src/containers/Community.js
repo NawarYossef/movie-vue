@@ -57,4 +57,7 @@ export class Community extends Component {
   };
 };
 
-export default connect(null)(Community);
+const mapStateToProps = state => ({
+  loggedIn: state.users.loggedIn
+});
+export default connect(mapStateToProps, null)(Community);

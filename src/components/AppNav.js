@@ -114,7 +114,7 @@ margin-bottom: 0px;
 `;
 
 const AppNav = props => {
-  const links = [
+  const appLinks = [
     <DropDownLink className={"dropDownMenu"}>Movies<Icon><FontAwesome name={"fa fa-caret-down"} size="lg" /></Icon>
       <ul className={"dropDownList"}>
         <li><Link to="/movies/coming-soon">Coming Soon</Link></li>
@@ -129,6 +129,13 @@ const AppNav = props => {
     <NavLink lastbtn="true" to="/community">Community</NavLink>
   ];
 
+  const homePageLinks = [
+    <NavLink to="/login">Login</NavLink>,
+    <NavLink lastbtn="true" to="/signup">Signup</NavLink>
+  ]
+
+  let links;
+  props.loggedIn ? links = appLinks : links = homePageLinks;
   return (
     <NavBar>
       <List>
@@ -145,7 +152,8 @@ const AppNav = props => {
 }
 
 const mapStateToProps = state => ({
-  bookmarkCount: state.movies.bookmarkCount
+  bookmarkCount: state.movies.bookmarkCount,
+  loggedIn: state.users.loggedIn
 });
 
 export default connect(mapStateToProps, null)(AppNav);

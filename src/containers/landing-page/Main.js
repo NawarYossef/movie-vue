@@ -25,11 +25,11 @@ border-radius: 3px;
 list-style-type: none !important;
 @media (min-width: 320px) {
   flex-direction: column;
-  margin: 200px auto 250px auto;
+  margin: 200px auto 60px auto;
 }
 @media (min-width: 768px) {
   flex-direction: row;
-  margin: 200px auto 20px auto;
+  margin: 200px auto 100px auto;
 }
 `;
 

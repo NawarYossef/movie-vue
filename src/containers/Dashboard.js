@@ -132,7 +132,8 @@ const mapStateToProps = state => ({
   showModal: state.movies.showModal,
   movieId: state.movies.movieId,
   trailerKey: state.movies.trailerKey,
-  pageCounter: state.movies.pageCounter
+  pageCounter: state.movies.pageCounter,
+  loggedIn: state.users.loggedIn
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -34,9 +34,6 @@ background-color: #051929;
 
 class App extends Component {
   componentDidMount = () => {
-    console.log('------------------------------------');
-    console.log(API_BASE_URL);
-    console.log('------------------------------------');
     axios.get(`${API_BASE_URL}/api/movies`)
       .then(res => this.props.storeBookmarkCount(res.data.length))
       .catch(err => console.log(err))
