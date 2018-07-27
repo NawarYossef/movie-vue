@@ -53,13 +53,14 @@ export const createNewUser = userData => dispatch => {
     });
 }
 
-export const userLogin = data => dispatch => {
-  fetch(API_BASE_URL + '/api/auth/login', {
+export const userLogin = userData => dispatch => {
+  const url = API_BASE_URL + '/api/auth/login';
+  fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(userData)
   })
     .then(res => {
       if (!res.ok) {

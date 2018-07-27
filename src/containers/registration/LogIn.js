@@ -10,9 +10,8 @@ class Login extends Component {
 	constructor(props) {
 		super();
 		this.state = {
-			userName: '',
-      password: '',
-      token: ''
+			username: '',
+      password: ''
 		}
 	}
 
@@ -29,7 +28,7 @@ class Login extends Component {
 	handleSubmit = e => {
 		e.preventDefault()
 			const userData = this.state;
-			this.props.dispatch(userLogin(userData));
+			this.props.userLogin(userData);
 	}
 
 	render() {
@@ -39,7 +38,7 @@ class Login extends Component {
 					<div className="form-group">
 						<label htmlFor="username">User name</label>
 						<input type="text" className={"form-control"} placeholder="First name"
-							onChange={(e) => this.setState({ userName: e.target.value })}
+							onChange={(e) => this.setState({ username: e.target.value })}
 						/>
 					</div>
 					<div className="form-group">
