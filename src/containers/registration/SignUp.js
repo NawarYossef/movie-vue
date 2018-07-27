@@ -41,7 +41,7 @@ export class SignUp extends Component {
       <section className={"registration-form-wrapper"}>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <div className="form-group">
-            <label htmlFor="username">User Name</label>
+            <label htmlFor="username">User name</label>
             <input type="text" className={"form-control"} placeholder="First name"
               onChange={(e) => this.setState({ username: e.target.value })}
             />

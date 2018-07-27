@@ -1,6 +1,5 @@
 import { API_BASE_URL } from "../config";
 import history from '../history'
-import store from '../store';
 
 export const SET_TOKEN = 'SET_TOKEN';
 export const setToken = token => ({
@@ -13,19 +12,18 @@ export const logOut = () => ({
   type: LOG_OUT
 });
 
-
-const setSessionToken = (token) => {
-  store.set('sessionToken', { token });
+const setSessionToken = token => {
+  localStorage.setItem("token", token);
 }
 
 const getToken = () => {
   console.log('getting');
-  let token = store.get('sessionToken');
+  let token = localStorage.getItem("token");
   return token;
 }
 
 const removeToken = () => {
-  store.remove('sessionToken')
+  localStorage.removeItem("token");
 }
 
 export const userLogout = () => dispatch => {
@@ -46,11 +44,9 @@ export const createNewUser = userData => dispatch => {
     .then(res => {
       return res.json();
     })
-    .then(response => {
-      console.log(response);
-    })
-    .then(() => {
-      dispatch(userLogin(userData));
+    .then(res => {
+      history.push('/login');
+      return;
     })
     .catch(err => {
       console.log(err);
@@ -58,7 +54,7 @@ export const createNewUser = userData => dispatch => {
 }
 
 export const userLogin = data => dispatch => {
-  fetch(API_BASE_URL + '/users/login', {
+  fetch(API_BASE_URL + '/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -72,12 +68,13 @@ export const userLogin = data => dispatch => {
       return res.json();
     })
     .then(payload => {
-      history.push('/movies/now-playing');
-      setSessionToken(payload.token);
+      setSessionToken(payload.authToken);
     })
     .then(() => {
       let token = getToken();
-      dispatch(setToken(token.token));
+      dispatch(setToken(token));
+      history.push('/movies/coming-soon');
+      return;
     })
     .catch(err => {
       console.log(err)

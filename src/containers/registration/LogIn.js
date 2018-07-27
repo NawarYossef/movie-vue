@@ -6,7 +6,7 @@ import { userLogin } from "../../actions/users";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./registration.css";
 
-class LogIn extends Component {
+class Login extends Component {
 	constructor(props) {
 		super();
 		this.state = {
@@ -37,7 +37,7 @@ class LogIn extends Component {
 			<section className={"registration-form-wrapper"}>
 				<form onSubmit={(e) => this.handleSubmit(e)}>
 					<div className="form-group">
-						<label htmlFor="username">User Name</label>
+						<label htmlFor="username">User name</label>
 						<input type="text" className={"form-control"} placeholder="First name"
 							onChange={(e) => this.setState({ userName: e.target.value })}
 						/>
@@ -59,4 +59,4 @@ const mapDispatchToProps = dispatch => ({
 	userLogin: userData => dispatch(userLogin(userData))
 });
 
-export default connect(null, mapDispatchToProps)(LogIn);
+export default connect(null, mapDispatchToProps)(Login);

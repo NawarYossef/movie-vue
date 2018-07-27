@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import 'normalize.css';
 import styled from 'styled-components';
 import LandingPage from './landing-page/LandingPage';
@@ -9,12 +9,13 @@ import MovieDetails from '../components/movies/MovieDetails';
 import Movies from './Movies';
 import Dashboard from './Dashboard';
 import Community from './Community';
-import LogIn from "./registration/LogIn"
+import Login from "./registration/Login"
 import SignUp from "./registration/SignUp"
 import { Footer } from './landing-page/Footer';
 import { storeBookmarkCount } from '../actions/server';
 import axios from "axios";
 import { API_BASE_URL } from '../config';
+import history from '../history';
 
 const PageWrapper = styled.div`
 text-align: center;
@@ -50,11 +51,11 @@ class App extends Component {
 
   render() {
     return (
-      <Page>
+      <Page  history={history}>
         <PageWrapper>
           <Header />
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/login" component={LogIn} />
+          <Route exact path="/login" component={Login} />
 
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/dashboard" component={Dashboard} />
