@@ -2,10 +2,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import history from '../history';
 import styled from 'styled-components';
 import { getMovies, storeMovieDataAndId, getTrailerKeyAndShowModal, closeModal, increaseCounter } from '../actions/api';
-import { storeMovieDataAndUpdateBookmarkCount, deleteBookmarkedMovie } from '../actions/server';
+import { storeMovieDataAndUpdateBookmarkCount } from '../actions/server';
 import { BriefDescription } from '../components/movies/BriefDescription';
 // import { RenderMoreResults } from '../components/movies/RenderMoreResults';
 import MovieModal from '../components/movies/MovieModal';
@@ -72,6 +72,8 @@ justify-content: space-between;
 
 class Movies extends Component {
   componentDidMount = () => {
+    this.userLoggedInCheck();
+
     if (this.props.location.pathname === MOVIES_DATA.popular.route) {
       this.props.getMovies(MOVIES_DATA.popular.apiUrl, this.props.pageCounter);
     } else if (this.props.location.pathname === MOVIES_DATA.nowPlaying.route) {
@@ -79,6 +81,10 @@ class Movies extends Component {
     } else if (this.props.location.pathname === MOVIES_DATA.comingSoon.route) {
       this.props.getMovies(MOVIES_DATA.comingSoon.apiUrl, this.props.pageCounter);
     }
+  }
+
+  userLoggedInCheck = () => {
+    !this.props.loggedIn && history.push('/')
   }
 
   sectionTitleHandle() {
@@ -144,7 +150,8 @@ const mapStateToProps = state => ({
   showModal: state.movies.showModal,
   movieId: state.movies.movieId,
   trailerKey: state.movies.trailerKey,
-  pageCounter: state.movies.pageCounter
+  pageCounter: state.movies.pageCounter,
+  loggedIn: state.users.loggedIn
 });
 
 

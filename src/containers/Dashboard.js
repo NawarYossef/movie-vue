@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import history from '../history';
 import { getTrailerKeyAndShowModal, closeModal, storeMovieDataAndId } from '../actions/api';
 import { deleteBookmarkedMovie, getMovieData, storeMovieDataAndUpdateBookmarkCount } from '../actions/server';
 import { BriefDescription } from '../components/movies/BriefDescription';
@@ -67,9 +68,15 @@ justify-content: space-between;
 
 export class Dashboard extends Component {
   componentDidMount = () => {
+    this.userLoggedInCheck();
     this.props.getMovieData();
     document.getElementsByClassName("dashboard-wrapper")[0].style.height = "100vh";
   }
+
+  userLoggedInCheck = () => {
+    !this.props.loggedIn && history.push('/')
+  }
+
   showBriefDescription = (description) => {
     return `${description.split('.')[0]}.`;
   }

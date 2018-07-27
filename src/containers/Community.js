@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import history from '../history';
 import styled from 'styled-components';
 
 const TitleWrapper = styled.div`
@@ -35,6 +36,14 @@ justify-content: space-between;
 `;
 
 export class Community extends Component {
+  componentDidMount = () => {
+    this.userLoggedInCheck();
+  }
+
+  userLoggedInCheck = () => {
+    !this.props.loggedIn && history.push('/')
+  }
+
   render() {
     return (
       <SectionWrapper>
