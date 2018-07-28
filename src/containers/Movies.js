@@ -73,7 +73,7 @@ justify-content: space-between;
 class Movies extends Component {
   componentDidMount = () => {
     this.userLoggedInCheck();
-
+    
     if (this.props.location.pathname === MOVIES_DATA.popular.route) {
       this.props.getMovies(MOVIES_DATA.popular.apiUrl, this.props.pageCounter);
     } else if (this.props.location.pathname === MOVIES_DATA.nowPlaying.route) {
@@ -81,6 +81,11 @@ class Movies extends Component {
     } else if (this.props.location.pathname === MOVIES_DATA.comingSoon.route) {
       this.props.getMovies(MOVIES_DATA.comingSoon.apiUrl, this.props.pageCounter);
     }
+    this.changeFooterPosition();
+  }
+
+  changeFooterPosition = () => {
+    document.querySelector('footer').style.position = "relative";
   }
 
   userLoggedInCheck = () => {

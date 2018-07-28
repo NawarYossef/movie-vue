@@ -126,7 +126,8 @@ const AppNav = props => {
       <NavLink to="/dashboard">Dashboard</NavLink>
       {props.bookmarkCount > 0 && <Count>{props.bookmarkCount}</Count>}
     </DashboardWrapper>,
-    <NavLink lastbtn="true" to="/community">Community</NavLink>
+    <NavLink to="/community">Community</NavLink>,
+    <NavLink lastbtn="true" to="/">Log out</NavLink>
   ];
 
   const homePageLinks = [

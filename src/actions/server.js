@@ -72,7 +72,10 @@ export const deleteBookmarkedMovie = movieId => {
   };
 };
 
-//  Auth
+//  Auth:
+  // session persistance 
+  //  add logout link to navbar
+ 
 //  rating endpoint
 //  allow users to bookmark from movie details page
 //  if movie is bookmarked:
@@ -80,3 +83,4 @@ export const deleteBookmarkedMovie = movieId => {
   //  don't allow for movies to be added twice (show message for that)
 // design :
   // fix bookmark circle
+  //   make footer not fixed for movies pages

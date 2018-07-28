@@ -10,6 +10,7 @@
     "normalize.css": "^8.0.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
+    "react-burger-menu": "^2.5.2",
     "react-calendar": "^2.13.4",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",
