@@ -10,4 +10,18 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
+function saveState(state) {
+  try {
+      let serializedState = JSON.stringify(state);
+      localStorage.setItem("storeState", serializedState);
+  }
+  catch (err) {
+    console.log(err);
+  }
+}
+
+    store.subscribe(() => {
+      //this is just a function that saves state to localStorage
+      saveState(store.getState());
+  }); 
 export default store;

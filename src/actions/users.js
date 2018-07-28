@@ -17,7 +17,6 @@ const setSessionToken = token => {
 }
 
 const getToken = () => {
-  console.log('getting');
   let token = localStorage.getItem("token");
   return token;
 }

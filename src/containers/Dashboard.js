@@ -68,13 +68,14 @@ justify-content: space-between;
 
 export class Dashboard extends Component {
   componentDidMount = () => {
-    this.userLoggedInCheck();
+    this.checkUserLoggedIn();
     this.props.getMovieData();
     document.getElementsByClassName("dashboard-wrapper")[0].style.height = "100vh";
   }
 
-  userLoggedInCheck = () => {
-    !this.props.loggedIn && history.push('/')
+  checkUserLoggedIn = () => {
+    const userLoggedIn = JSON.parse(localStorage.getItem('storeState')).users.loggedIn
+    !userLoggedIn && history.push('/');
   }
 
   showBriefDescription = (description) => {

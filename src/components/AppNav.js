@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { userLogout } from '../actions/users';
 import 'normalize.css';
 import FontAwesome from 'react-fontawesome';
 import styled from 'styled-components';
@@ -114,6 +115,7 @@ margin-bottom: 0px;
 `;
 
 const AppNav = props => {
+  const userLoggedIn = JSON.parse(localStorage.getItem('storeState')).users.loggedIn
   const appLinks = [
     <DropDownLink className={"dropDownMenu"}>Movies<Icon><FontAwesome name={"fa fa-caret-down"} size="lg" /></Icon>
       <ul className={"dropDownList"}>
@@ -127,7 +129,7 @@ const AppNav = props => {
       {props.bookmarkCount > 0 && <Count>{props.bookmarkCount}</Count>}
     </DashboardWrapper>,
     <NavLink to="/community">Community</NavLink>,
-    <NavLink lastbtn="true" to="/">Log out</NavLink>
+    <NavLink lastbtn="true" to="/" onClick={() => props.userLogout()}>Log out</NavLink>
   ];
 
   const homePageLinks = [
@@ -152,11 +154,15 @@ const AppNav = props => {
   );
 }
 
+const mapDispatchToProps = dispatch => ({
+  userLogout: () => dispatch(userLogout())
+});
+
 const mapStateToProps = state => ({
   bookmarkCount: state.movies.bookmarkCount,
   loggedIn: state.users.loggedIn
 });
 
-export default connect(mapStateToProps, null)(AppNav);
+export default connect(mapStateToProps, mapDispatchToProps)(AppNav);
 
 

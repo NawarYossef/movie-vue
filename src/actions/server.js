@@ -83,4 +83,3 @@ export const deleteBookmarkedMovie = movieId => {
   //  don't allow for movies to be added twice (show message for that)
 // design :
   // fix bookmark circle
-  //   make footer not fixed for movies pages

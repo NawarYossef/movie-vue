@@ -37,11 +37,12 @@ justify-content: space-between;
 
 export class Community extends Component {
   componentDidMount = () => {
-    this.userLoggedInCheck();
+    this.checkUserLoggedIn();
   }
 
-  userLoggedInCheck = () => {
-    !this.props.loggedIn && history.push('/')
+  checkUserLoggedIn = () => {
+    const userLoggedIn = JSON.parse(localStorage.getItem('storeState')).users.loggedIn
+    !userLoggedIn && history.push('/');
   }
 
   render() {

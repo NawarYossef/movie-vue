@@ -16,7 +16,6 @@ import { storeBookmarkCount } from '../actions/server';
 import axios from "axios";
 import { API_BASE_URL } from '../config';
 import history from '../history';
-
 const PageWrapper = styled.div`
 text-align: center;
 margin: 0 auto;

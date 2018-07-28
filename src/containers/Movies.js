@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { getMovies, storeMovieDataAndId, getTrailerKeyAndShowModal, closeModal, increaseCounter } from '../actions/api';
 import { storeMovieDataAndUpdateBookmarkCount } from '../actions/server';
 import { BriefDescription } from '../components/movies/BriefDescription';
-// import { RenderMoreResults } from '../components/movies/RenderMoreResults';
 import MovieModal from '../components/movies/MovieModal';
 import { MOVIES_DATA } from "../constants.js"
 import '../styles/main.css';
@@ -72,7 +71,7 @@ justify-content: space-between;
 
 class Movies extends Component {
   componentDidMount = () => {
-    this.userLoggedInCheck();
+    this.checkUserLoggedIn();
     
     if (this.props.location.pathname === MOVIES_DATA.popular.route) {
       this.props.getMovies(MOVIES_DATA.popular.apiUrl, this.props.pageCounter);
@@ -88,8 +87,9 @@ class Movies extends Component {
     document.querySelector('footer').style.position = "relative";
   }
 
-  userLoggedInCheck = () => {
-    !this.props.loggedIn && history.push('/')
+  checkUserLoggedIn = () => {
+    const userLoggedIn = JSON.parse(localStorage.getItem('storeState')).users.loggedIn
+    !userLoggedIn && history.push('/');
   }
 
   sectionTitleHandle() {
@@ -102,7 +102,7 @@ class Movies extends Component {
     return title;
   }
 
-  showBriefDescription = (description) => {
+  showBriefDescription = description => {
     return `${description.split('.')[0]}.`;
   }
 
