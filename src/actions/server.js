@@ -4,10 +4,20 @@ import { API_BASE_URL } from '../config';
 // -------------- GET all movies data --------------------
 export const getMovieData = () => {
   return dispatch => {
-    axios.get(`${API_BASE_URL}/api/movies`)
+    fetch(`${API_BASE_URL}/api/movies`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
       .then(res => {
-        dispatch(storeMovieDataSuccess(res.data));
-        dispatch(storeBookmarkCount(res.data.length));
+        return res.json();
+      })
+      .then(data => {
+        dispatch(storeMovieDataSuccess(data));
+        dispatch(storeBookmarkCount(data.length));
         return;
       })
       .catch(err => console.log(err));
@@ -24,19 +34,26 @@ export const storeMovieDataSuccess = moviesData => ({
 export const storeMovieDataAndUpdateBookmarkCount = movieId => {
   return dispatch => {
     const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}`;
-    console.log('------------------------------------');
-    console.log(movieId, movieUrl);
-    console.log('------------------------------------');
     axios.get(movieUrl)
 
       .then(res => {
-        const movieData = res.data
-        axios.post(`${API_BASE_URL}/api/movies`, {
-          movieData
+        const movieData = { "movieData": res.data }
+
+        fetch(`${API_BASE_URL}/api/movies`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': "application/json; charset=utf-8",
+            'Accept': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          },
+          body: JSON.stringify(movieData)
         })
           .then(res => {
-            dispatch(storeBookmarkCount(res.data.length));
-            dispatch(storeMovieDataSuccess(res.data));
+            return res.json();
+          })
+          .then(data => {
+            dispatch(storeBookmarkCount(data.length));
+            dispatch(storeMovieDataSuccess(data));
             return;
           })
           .catch(err => console.log(err));
@@ -63,7 +80,14 @@ export const deleteMovieDataSuccess = moviesId => ({
 
 export const deleteBookmarkedMovie = movieId => {
   return dispatch => {
-    axios.delete(`${API_BASE_URL}/api/movies/${movieId}`)
+    fetch(`${API_BASE_URL}/api/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': "application/json; charset=utf-8",
+        'Accept': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
       .then(() => {
         dispatch(getMovieData(movieId));
         return;
@@ -71,12 +95,3 @@ export const deleteBookmarkedMovie = movieId => {
       .catch(err => console.log(err));
   };
 };
-
- 
-//  rating endpoint
-//  allow users to bookmark from movie details page
-//  if movie is bookmarked:
-  //  when user going to movie details page, they should see trash icon instead of bookmark
-  //  don't allow for movies to be added twice (show message for that)
-// design :
-  // fix bookmark circle

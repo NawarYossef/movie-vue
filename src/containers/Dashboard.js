@@ -38,6 +38,7 @@ font-size: 1.4em;
 const SectionWrapper = styled.section`
 background-color: #051929;
 width: 100%;
+height: 100% !important;
 margin: 0px;
 padding: 100px 0px;
 @media (min-width: 320px) {
@@ -78,7 +79,7 @@ export class Dashboard extends Component {
   }
 
   showBriefDescription = (description) => {
-    return `${description.split('.')[0]}.`;
+    return description && `${description.split('.')[0]}.`;
   }
   render() {
     return (
@@ -87,7 +88,7 @@ export class Dashboard extends Component {
           <TitleWrapper>
             <SectionTitle>Your Bookmarks</SectionTitle>
           </TitleWrapper>
-          {this.props.bookmarkedMovies.length > 0 && this.props.bookmarkedMovies.map((movie) => {
+          {this.props.bookmarkedMovies.length > 0 && this.props.bookmarkedMovies.map(movie => {
             return (
               <BriefDescription
                 bookmarked={true}
