@@ -72,6 +72,7 @@ export class Dashboard extends Component {
     this.checkUserLoggedIn();
     this.props.getMovieData();
     document.getElementsByClassName("dashboard-wrapper")[0].style.height = "100vh";
+    // document.querySelector("footer").style.position = "absolute";
   }
 
   checkUserLoggedIn = () => {
@@ -122,7 +123,7 @@ const mapDispatchToProps = dispatch => ({
   storeMovieDataAndId: movieId => dispatch(storeMovieDataAndId(movieId)),
   getMovieData: () => dispatch(getMovieData()),
   closeModal: () => dispatch(closeModal()),
-  deleteBookmarkedMovie: movieId => dispatch(deleteBookmarkedMovie(movieId)),
+  deleteBookmarkedMovie: movieId => dispatch(deleteBookmarkedMovie(movieId))
 });
 
 const mapStateToProps = state => ({

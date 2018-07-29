@@ -30,7 +30,9 @@ body {
   background-position: 50% 20%;
 }
 
-
+.title {
+  color: #ffffff;
+}
 /* drop down menu styles */
 
 nav ul li {

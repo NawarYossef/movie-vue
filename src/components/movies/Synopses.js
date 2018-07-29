@@ -59,7 +59,7 @@ const Icon = styled.div`
 font-size: 1.4em;
 border-radius: 50%;
 border: 1px solid gray;
-padding: 18px;
+padding: 24px;
 padding-top: ${props => props.thumbsDown ? '15px' : '15px'};
 transition: background-color 1s;
 &:hover {
@@ -108,6 +108,11 @@ export const Synopses = props => {
     </Tooltip>
   );
 
+  const bookmarksToolTip = (
+    <Tooltip id="tooltip">
+      <strong>Save movie to Dashboard</strong>
+    </Tooltip>
+  );
   return (
     <Description>
       <IconsWrapper>
@@ -121,8 +126,8 @@ export const Synopses = props => {
             <FontAwesome name="thumbs-up" />
           </Icon>
         </OverlayTrigger>
-        <OverlayTrigger placement="top" overlay={tooltip}>
-          <Icon>
+        <OverlayTrigger placement="top" overlay={bookmarksToolTip}>
+          <Icon onClick={() => props.storeMovieDataAndUpdateBookmarkCount(props.movieData.id)}>
             <FontAwesome name="bookmark" />
           </Icon>
         </OverlayTrigger>

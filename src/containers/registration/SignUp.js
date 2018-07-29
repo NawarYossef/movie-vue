@@ -39,6 +39,7 @@ export class SignUp extends Component {
   render() {
     return (
       <section className={"registration-form-wrapper"}>
+        <h1 className={"title"}>Sign Up</h1>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <div className="form-group">
             <label htmlFor="username">User name</label>

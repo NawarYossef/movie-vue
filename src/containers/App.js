@@ -12,7 +12,7 @@ import Community from './Community';
 import Login from "./registration/Login"
 import SignUp from "./registration/SignUp"
 import { Footer } from './landing-page/Footer';
-import { storeBookmarkCount } from '../actions/server';
+import { storeBookmarkCount, getMovieData } from '../actions/server';
 import axios from "axios";
 import { API_BASE_URL } from '../config';
 import history from '../history';
@@ -33,9 +33,7 @@ background-color: #051929;
 
 class App extends Component {
   componentDidMount = () => {
-    axios.get(`${API_BASE_URL}/api/movies`)
-      .then(res => this.props.storeBookmarkCount(res.data.length))
-      .catch(err => console.log(err))
+    this.props.getMovieData();
     window.addEventListener('scroll', this.handleHeaderBoxShadow, true);
   }
 
@@ -68,7 +66,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  storeBookmarkCount: count => dispatch(storeBookmarkCount(count))
+  storeBookmarkCount: count => dispatch(storeBookmarkCount(count)),
+  getMovieData: () => dispatch(getMovieData())
 });
 
 const mapStateToProps = state => ({

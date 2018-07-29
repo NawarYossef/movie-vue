@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import history from '../history';
 import styled from 'styled-components';
 import { getMovies, storeMovieDataAndId, getTrailerKeyAndShowModal, closeModal, increaseCounter } from '../actions/api';
-import { storeMovieDataAndUpdateBookmarkCount } from '../actions/server';
+import { storeMovieDataAndUpdateBookmarkCount, deleteBookmarkedMovie } from '../actions/server';
 import { BriefDescription } from '../components/movies/BriefDescription';
 import MovieModal from '../components/movies/MovieModal';
 import { MOVIES_DATA } from "../constants.js"
@@ -72,7 +72,7 @@ justify-content: space-between;
 class Movies extends Component {
   componentDidMount = () => {
     this.checkUserLoggedIn();
-    
+
     if (this.props.location.pathname === MOVIES_DATA.popular.route) {
       this.props.getMovies(MOVIES_DATA.popular.apiUrl, this.props.pageCounter);
     } else if (this.props.location.pathname === MOVIES_DATA.nowPlaying.route) {
@@ -105,6 +105,14 @@ class Movies extends Component {
     return `${description.split('.')[0]}.`;
   }
 
+  movieBookmarkedCheck = apiMovie => {
+    if (this.props.bookmarkedMovies.filter(movie => movie.movieData.id === apiMovie.id).length) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   render() {
     const { allMovies } = this.props;
 
@@ -124,6 +132,7 @@ class Movies extends Component {
                 getTrailerKeyAndShowModal={this.props.getTrailerKeyAndShowModal}
                 storeMovieDataAndUpdateBookmarkCount={this.props.storeMovieDataAndUpdateBookmarkCount}
                 storeMovieDataAndId={this.props.storeMovieDataAndId}
+                deleteBookmarkedMovie={this.props.deleteBookmarkedMovie}
               />
             );
           })}
@@ -146,13 +155,15 @@ const mapDispatchToProps = dispatch => ({
   getTrailerKeyAndShowModal: movieId => dispatch(getTrailerKeyAndShowModal(movieId)),
   storeMovieDataAndUpdateBookmarkCount: movieId => dispatch(storeMovieDataAndUpdateBookmarkCount(movieId)),
   closeModal: () => dispatch(closeModal()),
-  increaseCounter: () => dispatch(increaseCounter())
+  increaseCounter: () => dispatch(increaseCounter()),
+  deleteBookmarkedMovie: movieId => dispatch(deleteBookmarkedMovie(movieId))
 });
 
 const mapStateToProps = state => ({
   allMovies: state.movies.allMovies,
   showModal: state.movies.showModal,
   movieId: state.movies.movieId,
+  bookmarkedMovies: state.movies.bookmarkedMovies,
   trailerKey: state.movies.trailerKey,
   pageCounter: state.movies.pageCounter,
   loggedIn: state.users.loggedIn

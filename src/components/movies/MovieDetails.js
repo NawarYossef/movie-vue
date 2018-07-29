@@ -9,6 +9,7 @@ import { Synopses } from './Synopses';
 import { Credits } from './Credits';
 import { MoviePoster } from './MoviePoster';
 import { getTrailerKeyAndShowModal, getMovieCredits, closeModal } from '../../actions/api';
+import { storeMovieDataAndUpdateBookmarkCount } from '../../actions/server';
 
 const MainSection = styled.section`
 width: 100%;
@@ -81,6 +82,7 @@ export class MovieDetails extends Component {
             <ReleaseDate>Release Date: {this.props.movieData.release_date}</ReleaseDate>
 
             <Synopses movieData={this.props.movieData}
+            storeMovieDataAndUpdateBookmarkCount={this.props.storeMovieDataAndUpdateBookmarkCount}
               getTrailerKeyAndShowModal={this.props.getTrailerKeyAndShowModal} />
 
             <Credits movieCreditsData={this.props.movieCreditsData} />
@@ -104,7 +106,8 @@ export class MovieDetails extends Component {
 const mapDispatchToProps = dispatch => ({
   getTrailerKeyAndShowModal: movieId => dispatch(getTrailerKeyAndShowModal(movieId)),
   getMovieCredits: movieId => dispatch(getMovieCredits(movieId)),
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModal()),
+  storeMovieDataAndUpdateBookmarkCount: movieId => dispatch(storeMovieDataAndUpdateBookmarkCount(movieId))
 });
 
 const mapStateToProps = state => ({

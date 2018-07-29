@@ -12,7 +12,8 @@ const initialState = {
   movieData: {},
   movieCreditsData: {},
   bookmarkIds: [],
-  bookmarkCount: ''
+  bookmarkCount: '',
+  movieRating: []
 };
 
 export default function movies(state = initialState, action) {
@@ -59,6 +60,11 @@ export default function movies(state = initialState, action) {
       return {
         ...state,
         bookmarkedMovies: action.moviesData
+      }
+    case serverActions.STORE_MOVIES_RATING_SUCCESS:
+      return {
+        ...state,
+        movieRating: action.moviesRating
       }
     default:
       return state;

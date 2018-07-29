@@ -95,3 +95,30 @@ export const deleteBookmarkedMovie = movieId => {
       .catch(err => console.log(err));
   };
 };
+
+// -------------- GET movie Rating --------------------
+export const STORE_MOVIES_RATING_SUCCESS = 'STORE_MOVIES_RATING_SUCCESS';
+export const storeMovieRatingSuccess = movieRating => ({
+  type: STORE_MOVIES_RATING_SUCCESS,
+  movieRating
+});
+export const getMovieRating = url => {
+  return dispatch => {
+    fetch(`${API_BASE_URL}/api/movies/rating`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        dispatch(storeMovieRatingSuccess(data));
+        return;
+      })
+      .catch(err => console.log(err));
+  };
+};

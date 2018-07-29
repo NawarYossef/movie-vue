@@ -27,7 +27,7 @@ font-size: 1.4em;
 display: inline-block;
 border-radius: 50%;
 border: 1px solid gray;
-padding: 17px;
+padding: 24px;
 padding-top: ${props => props.thumbsDown ? '15px' : '15px'};
 transition: background-color 1s;
 &:hover {

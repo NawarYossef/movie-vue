@@ -11,7 +11,7 @@ class Login extends Component {
 		super();
 		this.state = {
 			username: '',
-      password: ''
+			password: ''
 		}
 	}
 
@@ -21,19 +21,20 @@ class Login extends Component {
 
 	changeFooterPosition = () => {
 		document.querySelector("footer").setAttribute("style", "position:absolute; bottom:0;");
-    document.getElementById("root").style.height = "100vh";
-    document.getElementById("root").style.backgroundColor = "#081C24";
+		document.getElementById("root").style.height = "100vh";
+		document.getElementById("root").style.backgroundColor = "#081C24";
 	}
 
 	handleSubmit = e => {
 		e.preventDefault()
-			const userData = this.state;
-			this.props.userLogin(userData);
+		const userData = this.state;
+		this.props.userLogin(userData);
 	}
 
 	render() {
 		return (
 			<section className={"registration-form-wrapper"}>
+				<h1 className={"title"}>Login</h1>
 				<form onSubmit={(e) => this.handleSubmit(e)}>
 					<div className="form-group">
 						<label htmlFor="username">User name</label>

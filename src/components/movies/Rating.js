@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
+import { getMovieRating } from '../../actions/server';
 import Imdb from '../../assets/imdb.png'
 import RottenTomatoe from '../../assets/rotten-tomatoe.png'
 import MetaCritic from '../../assets/metacritic.png'
@@ -64,9 +66,10 @@ export class Rating extends Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     const movieTitle = this.props.movieData.title;
     const url = `http://www.omdbapi.com/?t=${movieTitle}&plot=full&apikey=${process.env.REACT_APP_OMDB_API_KEY}`
+    // this.props.getMovieRating(url)
     axios.get(url)
       .then(res => {
         this.setState({
@@ -118,3 +121,13 @@ export class Rating extends Component {
     }
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  getMovieRating: url => dispatch(getMovieRating(url)),
+});
+
+const mapStateToProps = state => ({
+  movieRating: state.movies.movieRating
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Rating);
