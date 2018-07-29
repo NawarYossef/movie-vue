@@ -12,10 +12,13 @@ height: 100%;
 position: relative;
 `
 export class LandingPage extends Component {
-
-  componentDidMount = () => {
-    document.body.style.backgroundColor = "url('../../assets/landing-page-img.jpg')";
+  constructor(props){
+    super(props)
   }
+  componentDidMount = () => {
+    document.getElementById("root").style.backgroundColor = "transparent";
+  }
+
   render() {
     return (
       <Wrapper>

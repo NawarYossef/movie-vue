@@ -20,6 +20,10 @@ footer {
   right: 0;
 }
 
+.background-img {
+  background-image: url('../assets/landing-page-img.jpg');
+}
+
 body {
   background-color: "transparent" !important;
   background-image: url("../assets/landing-page-img.jpg");

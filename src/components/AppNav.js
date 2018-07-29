@@ -115,7 +115,6 @@ margin-bottom: 0px;
 `;
 
 const AppNav = props => {
-  const userLoggedIn = JSON.parse(localStorage.getItem('storeState')).users.loggedIn
   const appLinks = [
     <DropDownLink className={"dropDownMenu"}>Movies<Icon><FontAwesome name={"fa fa-caret-down"} size="lg" /></Icon>
       <ul className={"dropDownList"}>
@@ -132,17 +131,10 @@ const AppNav = props => {
     <NavLink lastbtn="true" to="/" onClick={() => props.userLogout()}>Log out</NavLink>
   ];
 
-  const homePageLinks = [
-    <NavLink to="/login">Login</NavLink>,
-    <NavLink lastbtn="true" to="/signup">Signup</NavLink>
-  ]
-
-  let links;
-  props.loggedIn ? links = appLinks : links = homePageLinks;
   return (
     <NavBar>
       <List>
-        {links.map((link, idx) => {
+        {appLinks.map((link, idx) => {
           return (
             <ListElement key={idx.toString()} className="link">
               {link}

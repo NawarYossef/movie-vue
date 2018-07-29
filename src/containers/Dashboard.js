@@ -74,8 +74,7 @@ export class Dashboard extends Component {
   }
 
   checkUserLoggedIn = () => {
-    const userLoggedIn = JSON.parse(localStorage.getItem('storeState')).users.loggedIn
-    !userLoggedIn && history.push('/');
+    !localStorage.getItem("token") && history.push('/');
   }
 
   showBriefDescription = (description) => {

@@ -41,8 +41,7 @@ export class Community extends Component {
   }
 
   checkUserLoggedIn = () => {
-    const userLoggedIn = JSON.parse(localStorage.getItem('storeState')).users.loggedIn
-    !userLoggedIn && history.push('/');
+    !localStorage.getItem("token") && history.push('/');
   }
 
   render() {

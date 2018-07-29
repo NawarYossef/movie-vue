@@ -4,6 +4,7 @@ import 'normalize.css';
 import styled from 'styled-components';
 import '../styles/main.css';
 import AppNav from '../components/AppNav';
+import HomePageNavbar from '../components/HomePageNavbar';
 import Title from '../components/Title';
 
 const AppHeader = styled.header`
@@ -68,7 +69,7 @@ export default class Header extends Component {
       <AppHeader>
         <HeaderWrapper>
           <Title />
-          <AppNav />
+          {!localStorage.getItem("token") ? <HomePageNavbar /> : <AppNav />}
         </HeaderWrapper>
       </AppHeader>
     );

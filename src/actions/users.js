@@ -16,7 +16,7 @@ const setSessionToken = token => {
   localStorage.setItem("token", token);
 }
 
-const getToken = () => {
+export const getToken = () => {
   let token = localStorage.getItem("token");
   return token;
 }

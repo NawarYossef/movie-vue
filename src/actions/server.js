@@ -72,9 +72,6 @@ export const deleteBookmarkedMovie = movieId => {
   };
 };
 
-//  Auth:
-  // session persistance 
-  //  add logout link to navbar
  
 //  rating endpoint
 //  allow users to bookmark from movie details page
